@@ -11,6 +11,7 @@ export default class App extends Component {
     this.api = `http://localhost:8000/api/example`;
     //let me make a branch
     //testing committing while other is on server
+    //Scott is now helping me out with whatever.
   }
   componentDidMount() {
     fetch(this.api)
