@@ -1,4 +1,5 @@
 const logger = require('morgan');
+const createError = require('http-errors');
 const express = require('express');
 const app = express();
 const port = 8000
@@ -14,12 +15,12 @@ app.use((_, res, next) => {
 
 app.use(logger('dev'));
 
-app.use(express.static('public'));
+app.use(express.static('../client/public'));
 
 
-app.get('/', (req, res) => res.send('Hello World!'))
+app.get('/', (req, res) => res.send('Hello World!'));
 
-app.listen(port, () => console.log(`Example app listening on port ${port}!`))
+app.listen(port, () => console.log(`Example app listening on port ${port}!`));
 
 
 // You can place your routes here, feel free to refactor:
