@@ -17,5 +17,6 @@
     "mocha": "^6.1.4",
     "morgan": "^1.9.1",
     "supertest": "^4.0.2"
-  }
+  },
+  "dependencies": {}
 }

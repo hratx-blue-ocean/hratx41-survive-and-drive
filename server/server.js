@@ -1,4 +1,4 @@
-const logger = require('morgan');
+// const logger = require('morgan');
 const createError = require('http-errors');
 const express = require('express');
 const app = express();
@@ -13,7 +13,7 @@ app.use((_, res, next) => {
     next();
 });
 
-app.use(logger('dev'));
+// app.use(logger('dev'));
 
 app.use(express.static('../client/public'));
 
