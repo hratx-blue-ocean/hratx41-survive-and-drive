@@ -6,7 +6,7 @@
   "scripts": {
     "test": "nyc mocha",
     "server-dev": "node bin/www",
-    "start": "node server.js"
+    
   },
   "author": "",
   "license": "ISC",
