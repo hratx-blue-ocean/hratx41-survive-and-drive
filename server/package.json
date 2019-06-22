@@ -5,8 +5,8 @@
   "main": "server.js",
   "scripts": {
     "test": "nyc mocha",
-    "start": "node bin/www",
-    "server-dev": "nodemon server.js"
+    "server-dev": "node bin/www",
+    "start": "nodemon server.js"
   },
   "author": "",
   "license": "ISC",
