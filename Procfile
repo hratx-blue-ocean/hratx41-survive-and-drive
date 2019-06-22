@@ -1,0 +1,1 @@
+web: $(cd server; npm install; cd ..; cd public; npm install;)
