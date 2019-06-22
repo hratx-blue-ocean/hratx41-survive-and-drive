@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "test": "nyc mocha",
-    "server-dev": "node bin/www",
+    "server-dev": "node bin/www"
     
   },
   "author": "",
