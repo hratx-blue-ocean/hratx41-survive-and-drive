@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Button, Form , Row, Col } from 'react-bootstrap';
 
 export default class Signup extends Component {
     constructor(props) {
@@ -7,7 +8,8 @@ export default class Signup extends Component {
         this.state = {
             firstName: '',
             lastName: '',
-            address: '',
+            address1: '',
+            address2: '',
             city: '',
             state: '',
             zip: '',
@@ -23,9 +25,11 @@ export default class Signup extends Component {
 
     handleChange(e) {
         e.preventDefault();
-        this.setState = {
-            [e.target.name]: e.target.value
-        };
+        const value = e.target.value
+        const name = e.target.name
+        this.setState({
+            [name]: value
+        });
     }
 
     handleSubmit() {
@@ -35,33 +39,64 @@ export default class Signup extends Component {
 
     render() {
         return (
-            <div>
-                <form>
-                    First Name: <br></br>
-                    <input name='firstName' onChange={this.handleChange}></input><br></br>
-                    Last Name: <br></br>
-                    <input name='lastName' onChange={this.handleChange}></input><br></br>
-                    Address: <br></br>
-                    <input name='address' onChange={this.handleChange}></input><br></br>
-                    City: <br></br>
-                    <input name='city' onChange={this.handleChange}></input><br></br>
-                    State: <br></br>
-                    <input name='state' onChange={this.handleChange}></input><br></br>
-                    Zip Code: <br></br>
-                    <input name='zip' onChange={this.handleChange}></input><br></br>
-                    Email: <br></br>
-                    <input name='email' onChange={this.handleChange}></input><br></br>
-                    Phone Number: <br></br>
-                    <input name='phone' onChange={this.handleChange}></input><br></br>
-                    Password: <br></br>
-                    <input name='password' onChange={this.handleChange}></input><br></br>
-                    <select>
-                        <option value='survivor'>Survivor</option>
-                        <option value='driver'>Driver</option>
-                    </select>
-                </form>
-                <button onSubmit={this.handleSubmit}>Submit</button>
-            </div>
+            <>
+                <Form>
+                    <Form.Group>
+                        <Form.Label>Name</Form.Label>
+                            <Row>
+                                <Col>
+                                    <Form.Control name='firstName' onChange={this.handleChange} placeholder='First Name' />
+                                </Col>
+                                <Col>
+                                    <Form.Control name='lastName' onChange={this.handleChange} placeholder='Last Name' />
+                                </Col>
+                            </Row>
+                    </Form.Group>
+                    <Form.Group>
+                        <Form.Label>Address</Form.Label>
+                            <Row>
+                                <Col>
+                                    <Form.Control name='address1' onChange={this.handleChange} placeholder='Address Line 1' />
+                                </Col>
+                                <Col>
+                                    <Form.Control name='address2' onChange={this.handleChange} placeholder='Address Line 2' />
+                                </Col>
+                            </Row>    
+                            <Row>
+                                <Col>
+                                    <Form.Control name='city' onChange={this.handleChange} placeholder='City' />
+                                </Col>
+                                <Col>
+                                    <Form.Control name='state' onChange={this.handleChange} placeholder='State' />
+                                </Col>
+                                <Col>
+                                    <Form.Control name='zip' onChange={this.handleChange} placeholder='Zip Code' />
+                                </Col>
+                            </Row>
+                    </Form.Group>
+                    <Form.Group>
+                        <Form.Label>Type</Form.Label>
+                            <Form.Control as='select'>
+                                <option>Survivor</option>
+                                <option>Driver</option>
+                            </Form.Control>
+                    </Form.Group>
+                    <Form.Group>
+                        <Form.Label>Login</Form.Label>
+                            <Row>
+                                <Col>
+                                    <Form.Control name='email' onChange={this.handleChange} placeholder='Email' />
+                                </Col>
+                            </Row>
+                            <Row>
+                                <Col>
+                                    <Form.Control name='password' onChange={this.handleChange} placeholder='Password' />
+                                </Col>
+                            </Row>
+                    </Form.Group>
+                </Form>
+                <Button onSubmit={this.handleSubmit}>Submit</Button>
+            </>
         )
     }
 }

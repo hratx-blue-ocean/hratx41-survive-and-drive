@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-export default class DriverProfile extends Component {
+export default class PatientProfile extends Component {
     constructor(props) {
         super(props);
 
