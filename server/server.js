@@ -1,10 +1,5 @@
-<<<<<<< HEAD
 const createError = require('http-errors');
-const logger = require('morgan');
-=======
 // const logger = require('morgan');
-const createError = require('http-errors');
->>>>>>> 109f75e017df1dfb3bf5f38e95b2e416dd469e48
 const express = require('express');
 const app = express();
 const port = process.env.PORT || 8000;

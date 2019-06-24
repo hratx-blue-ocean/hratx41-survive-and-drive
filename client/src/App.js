@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import fetch from 'node-fetch';
+// import fetch from 'node-fetch';
+import Signup from './Signup.js'
 // import './App.css';
 
 export default class App extends Component {
@@ -8,28 +9,14 @@ export default class App extends Component {
     this.state = {
       seaCreatures: []
     };
-    this.api = `http://localhost:8000/api/example`;
-    //let me make a branch
-    //testing committing while other is on server
-    //Scott is now helping me out with whatever.
-  }
-  componentDidMount() {
-    fetch(this.api)
-      .then(res => res.json())
-      .then(seaCreatures => {
-        this.setState({ seaCreatures: seaCreatures.data });
-      });
+    // this.api = `http://localhost:8000/api/example`;
   }
 
   render() {
     return (
       <>
-        <h1>Welcome to Blue Ocean!</h1>
-        <ul>
-          {this.state.seaCreatures.map((creature, index) => (
-            <li key={index}>{creature}</li>
-          ))}
-        </ul>
+        <h1>Welcome to Blue Ocean!!</h1>
+        <Signup />
       </>
     );
   }
