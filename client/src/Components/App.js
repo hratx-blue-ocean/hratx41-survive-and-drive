@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-// import fetch from 'node-fetch';
-import Signup from './Signup.js'
+import MainPage from './MainPage.js';
 // import './App.css';
 
 export default class App extends Component {
@@ -15,8 +14,7 @@ export default class App extends Component {
   render() {
     return (
       <>
-        <h1>Welcome to Blue Ocean!!</h1>
-        <Signup />
+        <MainPage />
       </>
     );
   }

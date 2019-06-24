@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { Component } from 'react';
 
-export default class Signup extends React.Component {
+export default class Signup extends Component {
     constructor(props) {
         super(props);
 
@@ -13,10 +13,12 @@ export default class Signup extends React.Component {
             zip: '',
             email: '',
             phone: '',
-            type: ''
+            type: '',
+            password: ''
         }
 
         this.handleChange = this.handleChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     handleChange(e) {
@@ -24,6 +26,11 @@ export default class Signup extends React.Component {
         this.setState = {
             [e.target.name]: e.target.value
         };
+    }
+
+    handleSubmit() {
+        //axios post for state info
+        
     }
 
     render() {
@@ -46,11 +53,14 @@ export default class Signup extends React.Component {
                     <input name='email' onChange={this.handleChange}></input><br></br>
                     Phone Number: <br></br>
                     <input name='phone' onChange={this.handleChange}></input><br></br>
+                    Password: <br></br>
+                    <input name='password' onChange={this.handleChange}></input><br></br>
                     <select>
                         <option value='survivor'>Survivor</option>
                         <option value='driver'>Driver</option>
                     </select>
                 </form>
+                <button onSubmit={this.handleSubmit}>Submit</button>
             </div>
         )
     }
