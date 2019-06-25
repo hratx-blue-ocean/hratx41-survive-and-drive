@@ -132,7 +132,7 @@ const getAllDrivers = (cb) => {
   })
 }
 
-const getDriverSchedule = (driverId ,cb) {
+const getDriverSchedule = (driverId ,cb) => {
   client.query(`SELECT * FROM appointment WHERE driver_id = ${driverId}`, 
   (err, schedule) => {
     if(err) {
@@ -143,4 +143,5 @@ const getDriverSchedule = (driverId ,cb) {
   })
 }
 
-module.exports = { addAppointment, getAppointment, addDriver, updateAppointment, deleteAppointment, getDriver, getAllDrivers}
+module.exports = { addAppointment, getAppointment, addDriver, updateAppointment, deleteAppointment, getDriver, getAllDrivers, 
+  const getDriverSchedule}
