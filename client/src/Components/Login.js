@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Form, Row, Col, Button, Modal } from 'react-bootstrap';
+import { Form, Row, Col, Button, Modal, } from 'react-bootstrap';
 
 export default class Login extends Component {
     constructor(props) {
@@ -28,19 +28,19 @@ export default class Login extends Component {
         return (
             <>
             <Modal.Dialog>
-                <Modal.Header>Login<br></br>Don't have an account? <Button onClick={this.props.signup} class="btn btn-link">Sign Up</Button></Modal.Header>
+                <Modal.Header><b>Login</b></Modal.Header>
                 <Modal.Body>
                     <Form>
                         <Form.Group>
                             <Form.Label>Login</Form.Label>
                             <Row>
                                 <Col>
-                                <Form.Control name='email' onChange={this.handleChange} placeholder='Email'></Form.Control>
+                                <Form.Control name='email' className="m-1" onChange={this.handleChange} placeholder='Email'></Form.Control>
                                 </Col>
                             </Row>
                             <Row>
                                 <Col>
-                                <Form.Control name='password' onChange={this.handleChange} placeholder='Password'></Form.Control>
+                                <Form.Control name='password' className="m-1" onChange={this.handleChange} placeholder='Password'></Form.Control>
                                 </Col>
                             </Row>
                         </Form.Group>

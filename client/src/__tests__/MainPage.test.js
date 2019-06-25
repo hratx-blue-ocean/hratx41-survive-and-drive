@@ -11,7 +11,7 @@ afterEach(cleanup);
 it('Should have a login option somewhere on the landing (main) page.', async () => {
     const { getByText } = render(<App/>,);
 
-    const dolphin = await waitForElement(() => getByText(/Survivor/i),)
+    const dolphin = await waitForElement(() => getByText(/Sign up/i),)
 
     expect(dolphin).toBeTruthy();
 });
@@ -19,7 +19,7 @@ it('Should have a login option somewhere on the landing (main) page.', async () 
 it('Should have a signup option somewhere on the landing (main) page.', async () => {
     const { getByText } = render(<App/>,);
 
-    const dolphin = await waitForElement(() => getByText(/Survivor/i),)
+    const dolphin = await waitForElement(() => getByText(/Login/i),)
 
     expect(dolphin).toBeTruthy();
 });
