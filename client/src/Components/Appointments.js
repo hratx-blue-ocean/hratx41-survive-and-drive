@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { ListGroup, ListGroupItem, Modal } from 'react-bootstrap';
+import { ListGroup, ListGroupItem } from 'react-bootstrap';
 
 export default class Appointments extends Component {
     constructor(props) {
@@ -21,14 +21,9 @@ export default class Appointments extends Component {
     render() {
         return (
             <>
-            <Modal.Dialog>
-                <Modal.Header>Appointments</Modal.Header>
-                <Modal.Body>
-                    <ListGroup>
-                        {this.state.appointments.map((appointment, index) => <ListGroupItem>{appointment}</ListGroupItem>)}
-                    </ListGroup>
-                </Modal.Body>
-            </Modal.Dialog>
+                <ListGroup>
+                    {this.state.appointments.map((appointment, index) => <ListGroupItem>{appointment}</ListGroupItem>)}
+                </ListGroup>
             </>
         )
     }

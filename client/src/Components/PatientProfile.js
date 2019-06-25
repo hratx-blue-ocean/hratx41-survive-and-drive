@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { Image, Container, Row, Col } from 'react-bootstrap';
+import { Image, Container, Row, Col, Modal, ListGroup, ListGroupItem } from 'react-bootstrap';
+import Appointments from './Appointments.js';
 
 export default class PatientProfile extends Component {
     constructor(props) {
@@ -7,9 +8,10 @@ export default class PatientProfile extends Component {
 
         this.state = {
             id: '',
-            image: 'http://lorempixel.com/640/480/cats',
-            name: 'name',
+            image: 'https://via.placeholder.com/150',
+            name: 'Name',
             zip: 'zip code',
+            biography: 'jfoidpasjfipjdsapifjdsapjfpdjsafopjdsioafjodipsajfiodjsaofjdoisajfopdsnaofinpdsianfipdsnafipndsia',
             dependencies: ['wheelchair', 'oxygen tank']
         }
     }
@@ -24,18 +26,30 @@ export default class PatientProfile extends Component {
             <Container>
                 <Row>
                     <Col>
-                        <Image src={this.state.image}/>
+                        <Row>
+                            <Image src={this.state.image} class="img-thumbnail"/>
+                        </Row>
+                        <Row>
+                            <div>
+                                <h4>Vehicle Needs</h4>
+                            <ListGroup>
+                                {this.state.dependencies.map((dependency, index) => <ListGroupItem key={index}>{dependency}</ListGroupItem>)}
+                            </ListGroup>
+                            </div>
+                        </Row>
                     </Col>
-                    <Col>{this.state.name}</Col>
+                    <Col>
+                        <div>
+                            <h1>{this.state.name}</h1>
+                            <p>{this.state.biography}</p>
+                        </div>
+                        <Appointments />
+                    </Col>
                 </Row>
-            </Container>
-            <Container>
-                <Col>
-                    <Row>{this.state.zip}</Row>
-                    {this.state.dependencies.map((dependency, index) => <Row key={index}>{dependency}</Row>)}
-                </Col>
             </Container>
             </>
         )
     }
 }
+                    
+                    

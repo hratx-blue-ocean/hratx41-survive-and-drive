@@ -46,7 +46,7 @@ export default class MainPage extends Component {
                 
             {/* {this.state.isLogin && <Login signup={this.handleSignUp}/>}
             {this.state.isSignup && <Signup login={this.handleLogin}/>} */}
-            <Appointments />
+            <DriverProfile />
 
 
             </>
