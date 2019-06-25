@@ -28,7 +28,13 @@ const deleteAppointment = (request, cb) => {
 } 
 
 const addDriver = (request, cb) => { 
-  
+  client.query(`INSERT INTO driver (firstName, lastName, email, phoneNumber, addressLineOne, addressLineTwo, addressZipCode, addressState, photoLink, vehicleTypes) VALUES (${request.body.firstName}, ${request.body.lastName}, ${request.body.email}, ${request.body.phoneNumber}, ${request.body.addressLineOne}, ${request.body.LineTwo}, ${request.body.addressZipCode}, ${request.body.addressState}, ${request.body.photoLink}, ${request.body.vehicleTypes})`, (err, res) => {
+    if(err) {
+      cb(err, null);
+    } else {
+      cb(null, res);
+    }
+  })
 }
 
 const getDriver = (request, cb) => {
