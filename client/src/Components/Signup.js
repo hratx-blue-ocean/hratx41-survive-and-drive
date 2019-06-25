@@ -41,7 +41,7 @@ export default class Signup extends Component {
         return (
             <>
             <Modal.Dialog>
-                <Modal.Header>Sign Up</Modal.Header>
+                <Modal.Header>Sign Up<br></br>Already a member? <Button onClick={this.props.login} class="btn btn-link">Login</Button></Modal.Header>
                 <Modal.Body>
                     <Form>
                         <Form.Group>

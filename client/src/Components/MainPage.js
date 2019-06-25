@@ -12,7 +12,7 @@ export default class MainPage extends Component {
         super(props);
 
         this.state = {
-            isSignup: false,
+            isSignup: true,
             isLogin: false,
         }
         
@@ -39,11 +39,13 @@ export default class MainPage extends Component {
             <>  
             <Jumbotron>
             <h1>Survive and Drive!</h1>
+            
             </Jumbotron>
-                <Button onClick={this.handleSignUp}>Sign Up</Button>
-                <Button onClick={this.handleLogin}>Login</Button>
-                {this.state.isLogin && <Login/>}
-                {this.state.isSignup && <Signup />} 
+            {/* <Button onClick={this.handleSignUp}>Sign Up</Button> */}
+                
+            {this.state.isLogin && <Login signup={this.handleSignUp}/>}
+            {this.state.isSignup && <Signup login={this.handleLogin}/>}
+
             </>
         )
     }
