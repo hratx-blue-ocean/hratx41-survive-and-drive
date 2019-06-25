@@ -4,7 +4,7 @@ import Login from './Login.js';
 import PatientProfile from './PatientProfile.js';
 import DriverProfile from './DriverProfile.js'
 import CreateAppointment from './CreateAppointment.js';
-import { Button, Jumbotron, Modal } from 'react-bootstrap';
+import { Button, Jumbotron, Modal, Nav } from 'react-bootstrap';
 
 
 export default class MainPage extends Component {
@@ -37,10 +37,22 @@ export default class MainPage extends Component {
     render() {
         return (
             <>  
-            <Jumbotron>
-            <h1>Survive and Drive!</h1>
-            
-            </Jumbotron>
+            <Nav>
+                <Nav.Item>
+                    <Nav.Link onClick={this.handleLogin}>Log In</Nav.Link>
+                </Nav.Item>
+                <Nav.Item>
+                    <Nav.Link onClick={this.handleSignUp}>Sign Up</Nav.Link>
+                </Nav.Item>
+                <Nav.Item>
+                    <Nav.Link >Link</Nav.Link>
+                </Nav.Item>
+                <Nav.Item>
+                    <Nav.Link eventKey="disabled" disabled>
+                    Disabled
+                    </Nav.Link>
+                </Nav.Item>
+            </Nav>
             {/* <Button onClick={this.handleSignUp}>Sign Up</Button> */}
                 
             {this.state.isLogin && <Login signup={this.handleSignUp}/>}
