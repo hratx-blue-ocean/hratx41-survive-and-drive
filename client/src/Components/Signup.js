@@ -41,17 +41,17 @@ export default class Signup extends Component {
         return (
             <>
             <Modal.Dialog>
-                <Modal.Header>Sign Up<br></br>Already a member? <Button onClick={this.props.login} class="btn btn-link">Login</Button></Modal.Header>
+                <Modal.Header><b>Sign Up</b></Modal.Header>
                 <Modal.Body>
                     <Form>
                         <Form.Group>
                             <Form.Label>Name</Form.Label>
                                 <Row>
                                     <Col>
-                                        <Form.Control name='firstName' onChange={this.handleChange} placeholder='First Name' />
+                                        <Form.Control name='firstName' className="m-1" onChange={this.handleChange} placeholder='First Name' />
                                     </Col>
                                     <Col>
-                                        <Form.Control name='lastName' onChange={this.handleChange} placeholder='Last Name' />
+                                        <Form.Control name='lastName' className="m-1" onChange={this.handleChange} placeholder='Last Name' />
                                     </Col>
                                 </Row>
                         </Form.Group>
@@ -59,27 +59,27 @@ export default class Signup extends Component {
                             <Form.Label>Address</Form.Label>
                                 <Row>
                                     <Col>
-                                        <Form.Control name='address1' onChange={this.handleChange} placeholder='Address Line 1' />
+                                        <Form.Control name='address1' className="m-1" onChange={this.handleChange} placeholder='Address Line 1' />
                                     </Col>
                                     <Col>
-                                        <Form.Control name='address2' onChange={this.handleChange} placeholder='Address Line 2' />
+                                        <Form.Control name='address2' className="m-1" onChange={this.handleChange} placeholder='Address Line 2' />
                                     </Col>
                                 </Row>    
                                 <Row>
                                     <Col>
-                                        <Form.Control name='city' onChange={this.handleChange} placeholder='City' />
+                                        <Form.Control name='city' className="m-1" onChange={this.handleChange} placeholder='City' />
                                     </Col>
                                     <Col>
-                                        <Form.Control name='state' onChange={this.handleChange} placeholder='State' />
+                                        <Form.Control name='state' className="m-1" onChange={this.handleChange} placeholder='State' />
                                     </Col>
                                     <Col>
-                                        <Form.Control name='zip' onChange={this.handleChange} placeholder='Zip Code' />
+                                        <Form.Control name='zip' className="m-1" onChange={this.handleChange} placeholder='Zip Code' />
                                     </Col>
                                 </Row>
                         </Form.Group>
                         <Form.Group>
                             <Form.Label>Type</Form.Label>
-                                <Form.Control as='select'>
+                                <Form.Control className="m-1" as='select'>
                                     <option>Survivor</option>
                                     <option>Driver</option>
                                 </Form.Control>
@@ -88,12 +88,12 @@ export default class Signup extends Component {
                             <Form.Label>Login</Form.Label>
                                 <Row>
                                     <Col>
-                                        <Form.Control name='email' onChange={this.handleChange} placeholder='Email' />
+                                        <Form.Control name='email' className="m-1" onChange={this.handleChange} placeholder='Email' />
                                     </Col>
                                 </Row>
                                 <Row>
                                     <Col>
-                                        <Form.Control name='password' onChange={this.handleChange} placeholder='Password' />
+                                        <Form.Control name='password' className="m-1" onChange={this.handleChange} placeholder='Password' />
                                     </Col>
                                 </Row>
                         </Form.Group>
