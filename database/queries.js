@@ -16,8 +16,23 @@ const getAppointment = (request, cb) => {
 
 } 
 
-const updateAppointment = (request, cb) => { 
-
+const updateAppointment = (appointmentId, appointmentInfo, cb) => { 
+  client.query(`UPDATE appointment SET (
+    destination_driver, return_driver, survivor_id, locationName, 
+    addressLineOne, addressLineTwo, addressZipCode, addressState, 
+    appoinmentTime, pickupTime, date, toFromBoth) VALUES ( 
+      ${appointmentInfo.destination_driver}, ${appointmentInfo.return_driver}, ${appointmentInfo.survivor_id}, 
+      ${appointmentInfo.locationName}, ${appointmentInfo.addressLineOne}, ${appointmentInfo.addressLineTwo}, 
+      ${appointmentInfo.addressZipCode}, ${appointmentInfo.addressState}, ${appointmentInfo.appoinmentTime}, 
+      ${appointmentInfo.pickupTime}, ${appointmentInfo.date}, ${appointmentInfo.toFromBoth}) 
+      WHERE appointment_id = ${appointmentId}`, 
+      (err, res) => {
+      if(err) {
+        cb(err, null);
+      } else {
+        cb(null, res);
+      }
+    })
 } 
 
 const deleteAppointment = (request, cb) => { 

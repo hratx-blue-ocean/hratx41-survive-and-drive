@@ -1,62 +1,108 @@
-const { Client } = require('pg')
+const { Client } = require('pg');
 require('dotenv').config();
 
 const client = new Client({
-  user: process.env.DB_USER,
-  host: process.env.DB_HOST,
-  database: process.env.DB_DATABASE,
-  password: process.env.DB_PASSWORD,
-  port: process.env.DB_PORT
-})
+  connectionString: process.env.DATABASE_URL || postgres://dyqifpnlhonkbj:5031818abefcf438a1da741674c259040e8b2c924cc3e93b9711949e991fc6ae@ec2-23-21-109-177.compute-1.amazonaws.com:5432/d7eojmbc8en3lg,
+  ssl: true
+});
 
 client.connect()
 
-const addAppointment = (request, cb) => { 
-    client.query(`INSERT INTO appointment (destination_driver, return_driver, survivor_id, locationName, addressLineOne, addressLineTwo, addressZipCode, addressState, appoinmentTime, pickupTime, date, toFromBoth) VALUES (${request.body.destination_driver}, ${request.body.return_driver}, ${request.body.survivor_id}, ${request.body.locationName}, ${request.body.addressLineOne}, ${request.body.addressLineTwo}, ${request.body.addressZipCode}, ${request.body.addressState}, ${request.body.appoinmentTime}, ${request.body.pickupTime}, ${request.body.date}, ${request.body.toFromBoth})`, (err, res) => {
-        if(err) {
-          cb(err, null);
-        } else {
-          cb(null, res);
-        }
-      })
+const addAppointment = (appointmentInfo, cb) => { 
+  client.query(`INSERT INTO appointment (
+    destination_driver, return_driver, survivor_id, locationName, 
+    addressLineOne, addressLineTwo, addressZipCode, addressState, 
+    appoinmentTime, pickupTime, date, toFromBoth) VALUES ( 
+      ${appointmentInfo.destination_driver}, ${appointmentInfo.return_driver}, ${appointmentInfo.survivor_id}, 
+      ${appointmentInfo.locationName}, ${appointmentInfo.addressLineOne}, ${appointmentInfo.addressLineTwo}, 
+      ${appointmentInfo.addressZipCode}, ${appointmentInfo.addressState}, ${appointmentInfo.appoinmentTime}, 
+      ${appointmentInfo.pickupTime}, ${appointmentInfo.date}, ${appointmentInfo.toFromBoth})`, 
+      (err, res) => {
+      if(err) {
+        cb(err, null);
+      } else {
+        cb(null, res);
+      }
+    })
 }
 
 //have to confirm how we will track currentSurvivor in state
-const getAppointment = (request, cb) => {
-  client.query(`SELECT * FROM appointment WHERE survivor_id = ${request.body.currentSurvivor}`, (err, res) => {
+const getAppointment = (appointmentId, cb) => {
+  client.query(`SELECT * FROM appointment WHERE survivor_id = ${appointmentId}`, 
+  (err, appointmentInfo) => {
     if(err) {
         cb(err, null);
     } else {
-        cb(null, err);
+        cb(null, appointmentInfo);
     }
   })
 } 
 
 //need to figure out how we will track which appointment is clicked
-const updateAppointment = (request, cb) => { 
-    client.query(`UPDATE appointment SET destination_driver = ${request.body.destination_driver}, return_driver = ${request.body.return_driver} WHERE appointment_id = ${request.body.currentAppt}`, (err, res) => {
-        if(err) {
-          cb(err, null);
-        } else {
-          cb(null, res);
-        }
-      })
+const updateAppointmentReturnDriver = (appointmentId, driverId, cb) => { 
+  client.query(`UPDATE appointment SET return_driver = ${driverId} 
+  WHERE appointment_id = ${appointmentId}`, 
+  (err, res) => {
+    if(err) {
+      cb(err, null);
+    } else {
+      cb(null, res);
+    }
+  })
 } 
 
-//need to confirm how we are tracking appointment clicked in state
-const deleteAppointment = (request, cb) => { 
-    client.query(`DELETE FROM appointment WHERE appointment_id = ${request.body.currentAppointment}`, (err, res) => {
-        if(err) {
-            cb(err, null);
-        } else {
-            cb(null, err);
-        }
+const updateAppointmentDestinationDriver = (appointmentId, driverId, cb) => { 
+  client.query(`UPDATE appointment SET destination_driver = ${driverId} 
+  WHERE appointment_id = ${appointmentId}`, 
+  (err, res) => {
+    if(err) {
+      cb(err, null);
+    } else {
+      cb(null, res);
+    }
+  })
+} 
+
+const updateAppointment = (appointmentInfo, cb) => { 
+  client.query(`INSERT INTO appointment (
+    destination_driver, return_driver, survivor_id, locationName, 
+    addressLineOne, addressLineTwo, addressZipCode, addressState, 
+    appoinmentTime, pickupTime, date, toFromBoth) VALUES ( 
+      ${appointmentInfo.destination_driver}, ${appointmentInfo.return_driver}, ${appointmentInfo.survivor_id}, 
+      ${appointmentInfo.locationName}, ${appointmentInfo.addressLineOne}, ${appointmentInfo.addressLineTwo}, 
+      ${appointmentInfo.addressZipCode}, ${appointmentInfo.addressState}, ${appointmentInfo.appoinmentTime}, 
+      ${appointmentInfo.pickupTime}, ${appointmentInfo.date}, ${appointmentInfo.toFromBoth})`, 
+      (err, res) => {
+      if(err) {
+        cb(err, null);
+      } else {
+        cb(null, res);
+      }
     })
 } 
 
-const addDriver = (request, cb) => { 
-  client.query(`INSERT INTO driver (firstName, lastName, email, phoneNumber, addressLineOne, addressLineTwo, addressZipCode, addressState, photoLink, vehicleTypes) VALUES (${request.body.firstName}, ${request.body.lastName}, ${request.body.email}, ${request.body.phoneNumber}, ${request.body.addressLineOne}, ${request.body.addressLineTwo}, ${request.body.addressZipCode}, ${request.body.addressState}, ${request.body.photoLink}, ${request.body.vehicleTypes})`, (err, res) => {
+//need to confirm how we are tracking appointment clicked in state
+const deleteAppointment = (appointmentId, cb) => { 
+  client.query(`DELETE FROM appointment WHERE appointment_id = ${appointmentId}`, 
+  (err, res) => {
     if(err) {
+        cb(err, null);
+    } else {
+        cb(null, res);
+    }
+  })
+} 
+
+const addDriver = (driverInfo, cb) => { 
+  client.query(`INSERT INTO driver ( 
+    firstName, lastName, email, phoneNumber, addressLineOne, addressLineTwo, addressZipCode, 
+    addressState, photoLink, vehicleTypes) VALUES ( 
+      ${driverInfo.firstName}, ${driverInfo.lastName}, ${driverInfo.email}, 
+      ${driverInfo.phoneNumber}, ${driverInfo.addressLineOne}, ${driverInfo.addressLineTwo}, 
+      ${driverInfo.addressZipCode}, ${driverInfo.addressState}, ${driverInfo.photoLink}, 
+      ${driverInfo.vehicleTypes})`, 
+      (err, res) => {
+    if (err) {
       cb(err, null);
     } else {
       cb(null, res);
@@ -65,22 +111,23 @@ const addDriver = (request, cb) => {
 }
 
 //have to figure out how we will track driver who was clicked in state
-const getDriver = (request, cb) => {
-  client.query(`SELECT * FROM driver WHERE driver_id = ${request.body.currentDriver}`, (err, res) => {
-    if(err) {
+const getDriver = (driverId, cb) => {
+  client.query(`SELECT * FROM driver WHERE driver_id = ${driverId}`, 
+  (err, driverInfo) => {
+    if (err) {
         cb(err, null);
     } else {
-        cb(null, err);
+        cb(null, driverInfo);
     }
   })
 } 
 
-const getAllDrivers = (request, cb) => {
-  client.query(`SELECT * FROM driver`, (err, res) => {
+const getAllDrivers = (cb) => {
+  client.query(`SELECT * FROM driver`, (err, allDrivers) => {
     if(err) {
         cb(err, null);
     } else {
-        cb(null, err);
+        cb(null, allDrivers);
     }
   })
 }
