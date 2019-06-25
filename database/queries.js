@@ -1,13 +1,10 @@
-const { Client } = require('pg')
+const { Client } = require('pg');
 require('dotenv').config();
 
 const client = new Client({
-  user: process.env.DB_USER,
-  host: process.env.DB_HOST,
-  database: process.env.DB_DATABASE,
-  password: process.env.DB_PASSWORD,
-  port: process.env.DB_PORT
-})
+  connectionString: process.env.DATABASE_URL || postgres://dyqifpnlhonkbj:5031818abefcf438a1da741674c259040e8b2c924cc3e93b9711949e991fc6ae@ec2-23-21-109-177.compute-1.amazonaws.com:5432/d7eojmbc8en3lg,
+  ssl: true
+});
 
 client.connect()
 
@@ -28,7 +25,7 @@ const deleteAppointment = (request, cb) => {
 } 
 
 const addDriver = (request, cb) => { 
-  
+
 }
 
 const getDriver = (request, cb) => {
@@ -43,13 +40,27 @@ const deleteDriver = (request, cb) => {
 
 } 
 
-const addSurvivor = (request, response) => { 
-  client.query(`INSERT INTO survivor ( firstName,  ) VALUES ( * )`)
+const addSurvivor = (survivorProfile, cb) => { 
+  client.query(`INSERT INTO survivor ( 
+    firstName,  lastName, email, phoneNumber, addressLineOne, addressLineTwo, addressZipCode, addressState, 
+    photoLink, healthEquipmentID) VALUES ( 
+      ${survivorProfile.firstName},  ${survivorProfile.lastName}, ${survivorProfile.email}, 
+      ${survivorProfile.phoneNumber}, ${survivorProfile.addressLineOne}, ${survivorProfile.addressLineTwo}, 
+      ${survivorProfile.addressZipCode}, ${survivorProfile.addressState}, ${survivorProfile.photoLink}, 
+      ${survivorProfile.healthEquipmentID} )`, (err, results) => { 
+        if (err) { 
+          console.log(err) 
+          cb(err, null) 
+        } else { 
+          cb(null, results)
+        }
+      }
+  ); 
 }
 
 
-const getSurvivor = (request, cb) => { 
-
+const getSurvivor = (id, cb) => { 
+  client.query('')
 }
 
 const updateSurvivor = (request, cb) => { 
