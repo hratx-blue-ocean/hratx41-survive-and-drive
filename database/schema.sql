@@ -15,6 +15,7 @@ CREATE TABLE survivor (
   addressLineOne VARCHAR(255) NOT NULL, 
   addressLineTwo VARCHAR(255), 
   addressZipCode INTEGER NOT NULL, 
+  addressCity VARCHAR(255) NOT NULL, 
   addressState CHAR(2) NOT NULL, 
   photoLink VARCHAR(255), 
   healthEquipmentID INTEGER REFERENCES healthEquipment(equip_id) DEFAULT NULL 
@@ -31,6 +32,7 @@ CREATE TABLE driver (
   addressLineOne VARCHAR(255) NOT NULL, 
   addressLineTwo VARCHAR(255), 
   addressZipCode INTEGER NOT NULL, 
+  addressCity VARCHAR(255) NOT NULL, 
   addressState CHAR(2) NOT NULL, 
   photoLink VARCHAR(255), 
   vehicleTypes INTEGER REFERENCES vehicle(vehicleID) 
@@ -55,9 +57,10 @@ CREATE TABLE appointment (
   addressLineOne VARCHAR(255) NOT NULL, 
   addressLineTwo VARCHAR(255), 
   addressZipCode INTEGER NOT NULL, 
+  addressCity VARCHAR(255) NOT NULL, 
   addressState CHAR(2) NOT NULL, 
   appoinmentTime VARCHAR(10) NOT NULL, 
-  pickupTime VARCHAR(10) NOT NULL, 
+  pickupTime VARCHAR(10) NOT NULL, \
   date VARCHAR(12) NOT NULL, 
   toFromBoth VARCHAR (20) NOT NULL 
 ); 

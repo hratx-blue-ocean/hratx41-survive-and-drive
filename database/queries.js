@@ -25,17 +25,6 @@ const deleteAppointment = (request, cb) => {
 } 
 
 const addDriver = (request, cb) => { 
-<<<<<<< HEAD
-
-=======
-  client.query(`INSERT INTO driver (firstName, lastName, email, phoneNumber, addressLineOne, addressLineTwo, addressZipCode, addressState, photoLink, vehicleTypes) VALUES (${request.body.firstName}, ${request.body.lastName}, ${request.body.email}, ${request.body.phoneNumber}, ${request.body.addressLineOne}, ${request.body.LineTwo}, ${request.body.addressZipCode}, ${request.body.addressState}, ${request.body.photoLink}, ${request.body.vehicleTypes})`, (err, res) => {
-    if(err) {
-      cb(err, null);
-    } else {
-      cb(null, res);
-    }
-  })
->>>>>>> b72c8e07f2e885bf2a5237221972b5b68719b705
 }
 
 const getDriver = (request, cb) => {
@@ -43,11 +32,32 @@ const getDriver = (request, cb) => {
 } 
 
 const updateDriver = (request, cb) => { 
-
+  client.query(`UPDATE driver SET ( 
+    firstName,  lastName, email, phoneNumber, addressLineOne, addressLineTwo, addressZipCode, addressState, 
+    photoLink, healthEquipmentID) = ( 
+      ${driverProfile.firstName},  ${driverProfile.lastName}, ${driverProfile.email}, 
+      ${driverProfile.phoneNumber}, ${driverProfile.addressLineOne}, ${driverProfile.addressLineTwo}, 
+      ${driverProfile.addressZipCode}, ${driverProfile.addressState}, ${driverProfile.photoLink}, 
+      ${driverProfile.healthEquipmentID} )`, (err, updatedDriver) => { 
+        if (err) { 
+          console.log(err);
+          cb(err, null) 
+        } else { 
+          cb(null, updatedDriver)
+        }
+      }
+  ); 
 } 
 
-const deleteDriver = (request, cb) => { 
-
+const deleteDriver = (id, cb) => { 
+  client.query(`DELETE FROM driver WHERE driver_id = ${id}`, (err, res) => { 
+    if (err) { 
+      console.log(err);
+      cb(err, null)
+    } else { 
+      cb(null, `Driver with ID: ${id}, deleted`)
+    }
+  }); 
 } 
 
 const addSurvivor = (survivorProfile, cb) => { 
@@ -68,17 +78,47 @@ const addSurvivor = (survivorProfile, cb) => {
   ); 
 }
 
-
 const getSurvivor = (id, cb) => { 
-  client.query('')
+  client.query(`SELECT * FROM survivor WHERE survivor_id = ${id}`, 
+  (err, survivorProfile) => { 
+    if (err) { 
+      console.log(err);
+      cb(err, null) 
+    } else { 
+      cb(null, survivorProfile)
+    }
+  }); 
 }
 
-const updateSurvivor = (request, cb) => { 
-
+const updateSurvivor = (id, cb) => { 
+  client.query(`UPDATE survivor SET ( 
+    firstName,  lastName, email, phoneNumber, addressLineOne, addressLineTwo, addressZipCode, addressState, 
+    photoLink, healthEquipmentID) = ( 
+      ${survivorProfile.firstName},  ${survivorProfile.lastName}, ${survivorProfile.email}, 
+      ${survivorProfile.phoneNumber}, ${survivorProfile.addressLineOne}, ${survivorProfile.addressLineTwo}, 
+      ${survivorProfile.addressZipCode}, ${survivorProfile.addressState}, ${survivorProfile.photoLink}, 
+      ${survivorProfile.healthEquipmentID} )`, (err, updatedSurvivor) => { 
+        if (err) { 
+          console.log(err);
+          cb(err, null) 
+        } else { 
+          cb(null, updatedSurvivor)
+        }
+      }
+  ); 
 } 
 
-const deleteSurvivor = (request, cb) => { 
-
+const deleteSurvivor = (id, cb) => { 
+  client.query(`DELETE FROM survivor WHERE survivor_id = ${id}`, (err, res) => { 
+    if (err) { 
+      console.log(err);
+      cb(err, null)
+    } else { 
+      cb(null, `Survivor with ID: ${id}, deleted`)
+    }
+  }); 
 }
 
-module.exports = { getAppointment, addDriver, addSurvivor }
+module.exports = { addAppointment, getAppointment, updateAppointment, 
+  deleteAppointment, addDriver, getDriver, updateDriver, deleteDriver, 
+  addSurvivor, getSurvivor, updateSurvivor, deleteSurvivor }
