@@ -48,7 +48,7 @@ app.put('/', (req, res) => {
             res.status(201).send(items);
         }
     })
-  })
+})
 
 //update appointment destination driver
 app.put('/', (req, res) => {
@@ -61,7 +61,7 @@ app.put('/', (req, res) => {
             res.status(201).send(items);
         }
     })
-  })
+})
 
 //delete appointment
 app.delete('/', (req, res) => {
@@ -74,7 +74,7 @@ app.delete('/', (req, res) => {
           res.status(201).send(items);
       }
     })
-  })
+})
 
 //add driver
 app.post('/', (req, res) => {
@@ -87,7 +87,7 @@ app.post('/', (req, res) => {
           res.status(201).send(items);
         }
     })
-  })
+})
 
 //get driver
 app.get('/', (req, res) => {
@@ -103,19 +103,97 @@ app.get('/', (req, res) => {
 });
 
 //update driver
+app.put('/', (req, res) => {
+    db.updateDriver(req.body.driverId, (err, items) => {
+        if(err) { 
+            console.log('Error updating driver.');
+            res.status(401).send(err);
+        } else {
+            console.log(`Success.  Updated driver: ${req.body.driverId}`);
+            res.status(201).send(items);
+        }
+    })
+})
 
 
 //delete driver
+app.delete('/', (req, res) => {
+    db.deleteDriver(req.body.driverId, (err, items) => {
+      if(err) {
+          console.log(`Error deleting driver: ${req.body.driverId}.`);
+          res.status(401).send(err);
+      } else {
+          console.log(`Success.  Deleted driver: ${req.body.driverId}.`);
+          res.status(201).send(items);
+      }
+    })
+})
 
 //add survivor
+app.post('/', (req, res) => {
+    db.addSurvivor(req.body, (err, items) => {
+        if(err) {
+          console.log('There was an error invoking app.post to add a survivor');
+          res.status(401).send(err);
+        } else {
+          console.log('Success! Added survivor.');
+          res.status(201).send(items);
+        }
+    })
+})
 
 //get all survivors
+app.get('/', (req, res) => {
+    db.getAllSurvivors(req.body, (err, items) => {
+        if (err) {
+            console.log(`Error finding all survivors`);
+            res.status(401).send(err);
+        } else {
+            console.log(`Success! Found all survivors.`);
+            res.status(201).send(items);
+        }
+    });
+});
 
 //get survivor
+app.get('/', (req, res) => {
+    db.getSurvivor(req.body.survivorId, (err, items) => {
+        if (err) {
+            console.log(`Error finding driver: ${req.body.survivorId}:`);
+            res.status(401).send(err);
+        } else {
+            console.log(`Success! Found driver: ${req.body.survivorId}.`);
+            res.status(201).send(items);
+        }
+    });
+});
 
 //update survivor
+app.put('/', (req, res) => {
+    db.updateSurvivor(req.body.survivorId, (err, items) => {
+        if(err) { 
+            console.log('Error updating survivor.');
+            res.status(401).send(err);
+        } else {
+            console.log(`Success.  Updated survivor: ${req.body.survivorId}`);
+            res.status(201).send(items);
+        }
+    })
+})
 
 //delete survivor
+app.delete('/', (req, res) => {
+    db.deleteSurvivor(req.body.survivorId, (err, items) => {
+      if(err) {
+          console.log(`Error deleting survivor: ${req.body.survivorId}.`);
+          res.status(401).send(err);
+      } else {
+          console.log(`Success.  Deleted survivor: ${req.body.survivorId}.`);
+          res.status(201).send(items);
+      }
+    })
+})
+
 
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))
