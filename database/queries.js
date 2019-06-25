@@ -66,4 +66,4 @@ const deleteSurvivor = (request, cb) => {
 
 }
 
-module.exports = { getAppointment}
+module.exports = { getAppointment, addDriver, addSurvivor }
