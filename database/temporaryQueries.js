@@ -143,5 +143,4 @@ const getDriverSchedule = (driverId ,cb) => {
   })
 }
 
-module.exports = { addAppointment, getAppointment, addDriver, updateAppointment, deleteAppointment, getDriver, getAllDrivers, 
-  const getDriverSchedule}
+module.exports = { addAppointment, getAppointment, addDriver, updateAppointment, deleteAppointment, getDriver, getAllDrivers, getDriverSchedule}
