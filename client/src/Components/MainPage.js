@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
 import Signup from './Signup.js';
 import Login from './Login.js';
+import Header from './Header.js';
 import PatientProfile from './PatientProfile.js';
 import DriverProfile from './DriverProfile.js'
 import CreateAppointment from './CreateAppointment.js';
-import Appointments from './Appointments.js'
+
 import { Button, Jumbotron, Modal } from 'react-bootstrap';
+
+
 
 
 export default class MainPage extends Component {
@@ -37,16 +40,14 @@ export default class MainPage extends Component {
 
     render() {
         return (
-            <>  
-            <Jumbotron>
-            <h1>Survive and Drive!</h1>
-            
-            </Jumbotron>
-            {/* <Button onClick={this.handleSignUp}>Sign Up</Button> */}
+            <>
+            <Header signup={this.handleSignUp} login={this.handleLogin}/>
                 
-            {/* {this.state.isLogin && <Login signup={this.handleSignUp}/>}
-            {this.state.isSignup && <Signup login={this.handleLogin}/>} */}
-            <Appointments />
+
+            {this.state.isLogin &&  <Login signup={this.handleSignUp}/>}
+            {this.state.isSignup && <Signup login={this.handleLogin}/>}
+
+
 
 
             </>
