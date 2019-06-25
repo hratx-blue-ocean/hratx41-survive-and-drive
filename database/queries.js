@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 const { Client } = require('pg');
 require('dotenv').config();
 
@@ -215,7 +216,7 @@ const deleteSurvivor = (survivorId, cb) => {
       console.log(err);
       cb(err, null)
     } else { 
-      cb(null, `Survivor with ID: ${id}, deleted`)
+      cb(null, `Survivor with ID: ${survivorId}, deleted`)
     }
   }); 
 }
