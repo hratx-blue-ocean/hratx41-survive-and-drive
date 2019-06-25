@@ -132,4 +132,15 @@ const getAllDrivers = (cb) => {
   })
 }
 
+const getDriverSchedule = (driverId ,cb) {
+  client.query(`SELECT * FROM appointment WHERE driver_id = ${driverId}`, 
+  (err, schedule) => {
+    if(err) {
+        cb(err, null);
+    } else {
+        cb(null, schedule);
+    }
+  })
+}
+
 module.exports = { addAppointment, getAppointment, addDriver, updateAppointment, deleteAppointment, getDriver, getAllDrivers}
