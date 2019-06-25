@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Image, Container, Row, Col } from 'react-bootstrap';
 
 export default class DriverProfile extends Component {
     constructor(props) {
@@ -9,7 +10,7 @@ export default class DriverProfile extends Component {
             image: 'http://lorempixel.com/640/480/cats',
             name: 'name',
             zip: 'zip code',
-            vehicleInfo: ['taurus', '24 in rims']
+            vehicleInfo: ['ford taurus', '22s']
         }
     }
 
@@ -20,12 +21,20 @@ export default class DriverProfile extends Component {
     render() {
         return(
             <>
-            <img src={this.state.image}></img>
-            <h1>{this.state.name}</h1>
-            <div>
-                <div>{this.state.zip}</div>
-                <div>{this.state.vehicleInfo.map((info, index) => <div key={index}>{info}</div>)}</div>
-            </div>
+            <Container>
+                <Row>
+                    <Col>
+                        <Image src={this.state.image}/>
+                    </Col>
+                    <Col>{this.state.name}</Col>
+                </Row>
+            </Container>
+            <Container>
+                <Col>
+                    <Row>{this.state.zip}</Row>
+                    {this.state.vehicleInfo.map((info, index) => <Row key={index}>{info}</Row>)}
+                </Col>
+            </Container>
             </>
         )
     }
