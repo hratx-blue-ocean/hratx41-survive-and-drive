@@ -31,7 +31,7 @@ const getDriver = (request, cb) => {
 
 } 
 
-const updateDriver = (request, cb) => { 
+const updateDriver = (driverProfile, cb) => { 
   client.query(`UPDATE driver SET ( 
     firstName,  lastName, email, phoneNumber, addressLineOne, addressLineTwo, addressZipCode, addressState, 
     photoLink, healthEquipmentID) = ( 
@@ -76,6 +76,17 @@ const addSurvivor = (survivorProfile, cb) => {
         }
       }
   ); 
+} 
+
+const getAllSurvivors = (cb) => { 
+  client.query(`SELECT * FROM survivor`, (err, allDrivers) => { 
+    if (err) { 
+      console.log(err);
+      cb(err,null) 
+    } else { 
+      cb(null, allDrivers)
+    }
+  }); 
 }
 
 const getSurvivor = (id, cb) => { 
@@ -120,5 +131,5 @@ const deleteSurvivor = (id, cb) => {
 }
 
 module.exports = { addAppointment, getAppointment, updateAppointment, 
-  deleteAppointment, addDriver, getDriver, updateDriver, deleteDriver, 
+  deleteAppointment, addDriver, getAllSurvivors, getDriver, updateDriver, deleteDriver, 
   addSurvivor, getSurvivor, updateSurvivor, deleteSurvivor }
