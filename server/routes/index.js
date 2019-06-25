@@ -12,6 +12,17 @@ app.use(bodyParser.json())
 
 
 //add appointment
+app.post('/', (req, res) => {
+  db.addAppointment(req.body.appointmentInfo, (err, items) => {
+      if(err) {
+          console.log('There was an error invoking app.post.');
+          res.status(401).send(err);
+      } else {
+        console.log('Success! Posted appointment.');
+        res.status(201).send(items);
+      }
+  })
+})
 
 //get appointment
 
