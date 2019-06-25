@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Image, Container, Row, Col } from 'react-bootstrap';
-import Form from 'react-bootstrap/FormControl';
 
 export default class PatientProfile extends Component {
     constructor(props) {

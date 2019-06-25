@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Form, Row, Col, Button } from 'react-bootstrap';
+import { Form, Row, Col, Button, Modal } from 'react-bootstrap';
 
 export default class Login extends Component {
     constructor(props) {
@@ -27,22 +27,29 @@ export default class Login extends Component {
     render() {
         return (
             <>
-            <Form>
-                <Form.Group>
-                    <Form.Label>Login</Form.Label>
-                    <Row>
-                        <Col>
-                          <Form.Control name='email' onChange={this.handleChange} placeholder='Email'></Form.Control>
-                        </Col>
-                    </Row>
-                    <Row>
-                        <Col>
-                          <Form.Control name='password' onChange={this.handleChange} placeholder='Password'></Form.Control>
-                        </Col>
-                    </Row>
-                </Form.Group>
-            </Form>
-            <Button onClick={this.handleClick}>Login</Button>
+            <Modal.Dialog>
+                <Modal.Header>Login</Modal.Header>
+                <Modal.Body>
+                    <Form>
+                        <Form.Group>
+                            <Form.Label>Login</Form.Label>
+                            <Row>
+                                <Col>
+                                <Form.Control name='email' onChange={this.handleChange} placeholder='Email'></Form.Control>
+                                </Col>
+                            </Row>
+                            <Row>
+                                <Col>
+                                <Form.Control name='password' onChange={this.handleChange} placeholder='Password'></Form.Control>
+                                </Col>
+                            </Row>
+                        </Form.Group>
+                    </Form>
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button onClick={this.handleClick}>Login</Button>
+                </Modal.Footer>
+            </Modal.Dialog>
             </>
         )
     }
