@@ -5,7 +5,7 @@ import PatientProfile from './PatientProfile.js';
 import DriverProfile from './DriverProfile.js'
 import CreateAppointment from './CreateAppointment.js';
 import Appointments from './Appointments.js'
-import { Button, Jumbotron, Modal } from 'react-bootstrap';
+import { Button, Jumbotron } from 'react-bootstrap';
 
 
 export default class MainPage extends Component {

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Image, Container, Row, Col, Modal, ListGroup, ListGroupItem } from 'react-bootstrap';
+import { Image, Container, Row, Col, ListGroup, ListGroupItem } from 'react-bootstrap';
 import Appointments from './Appointments.js';
 
 export default class PatientProfile extends Component {
