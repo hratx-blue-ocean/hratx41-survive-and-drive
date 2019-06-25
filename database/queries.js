@@ -11,35 +11,53 @@ const client = new Client({
 
 client.connect()
 
-const getProductInfo = (id, cb) => {
-  client.query(`SELECT * FROM information WHERE product_id = ${id}`, (err, results) => {
-    if (err) {
-      console.log(err)
-      cb(err, null)
-    } else {
-      cb(null, results)
-    }
-  })
+const addAppointment = (request, cb) => { 
+
 }
 
-const getProductImages = (id, cb) => {
-  client.query(`SELECT * FROM images WHERE product_id = ${id}`, (err, results) => {
-    if (err) {
-      console.log('error')
-      cb(err, null)
-    } else {
-      cb(null, results)
-    }
-  })
+const getAppointment = (request, cb) => {
+
 } 
 
-const updateProductInfo = (id, cb) => { 
+const updateAppointment = (request, cb) => { 
 
-}
+} 
 
-const deleteProduct = (id, cb) => { 
+const deleteAppointment = (request, cb) => { 
+
+} 
+
+const addDriver = (request, cb) => { 
   
 }
 
-module.exports.getProductInfo = getProductInfo;
-module.exports.getProductImages = getProductImages;
+const getDriver = (request, cb) => {
+
+} 
+
+const updateDriver = (request, cb) => { 
+
+} 
+
+const deleteDriver = (request, cb) => { 
+
+} 
+
+const addSurvivor = (request, response) => { 
+  client.query(`INSERT INTO survivor ( firstName,  ) VALUES ( * )`)
+}
+
+
+const getSurvivor = (request, cb) => { 
+
+}
+
+const updateSurvivor = (request, cb) => { 
+
+} 
+
+const deleteSurvivor = (request, cb) => { 
+
+}
+
+module.exports = { getAppointment}

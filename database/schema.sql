@@ -46,20 +46,22 @@ CREATE TABLE vehicle (
 
 DROP TABLE IF EXISTS appointment;
 
-
 CREATE TABLE appointment (
   appointment_id SERIAL PRIMARY KEY, 
-  driver_id INTEGER REFERENCES driver(driver_id) DEFAULT null, 
+  destination_driver INTEGER REFERENCES driver(driver_id) DEFAULT null, 
+  return_driver INTEGER REFERENCES driver(driver_id) DEFAULT null, 
   survivor_id INTEGER REFERENCES survivor(survivor_id), 
   locationName VARCHAR(255) NOT NULL, 
   addressLineOne VARCHAR(255) NOT NULL, 
   addressLineTwo VARCHAR(255), 
   addressZipCode INTEGER NOT NULL, 
   addressState CHAR(2) NOT NULL, 
-  time VARCHAR(10) NOT NULL, 
+  appoinmentTime VARCHAR(10) NOT NULL, 
+  pickupTime VARCHAR(10) NOT NULL, 
   date VARCHAR(12) NOT NULL, 
   toFromBoth VARCHAR (20) NOT NULL 
-);
+); 
+
 
 DROP TABLE IF EXISTS healthEquipment;
 
