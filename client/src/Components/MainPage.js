@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Button, Jumbotron, Modal } from 'react-bootstrap';
 import Signup from './Signup.js';
 import Login from './Login.js';
 import Header from './Header.js';
@@ -6,7 +7,6 @@ import PatientProfile from './PatientProfile.js';
 import DriverProfile from './DriverProfile.js'
 import CreateAppointment from './CreateAppointment.js';
 
-import { Button, Jumbotron, Modal } from 'react-bootstrap';
 
 
 
@@ -44,8 +44,10 @@ export default class MainPage extends Component {
             <Header signup={this.handleSignUp} login={this.handleLogin}/>
                 
 
+
             {this.state.isLogin &&  <Login signup={this.handleSignUp}/>}
             {this.state.isSignup && <Signup login={this.handleLogin}/>}
+
 
 
 

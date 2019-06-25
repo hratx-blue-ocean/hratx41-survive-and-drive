@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { Image, Container, Row, Col } from 'react-bootstrap';
+import { Image, Container, Row, Col, ListGroup, ListGroupItem } from 'react-bootstrap';
+import DriverSchedule from './DriverSchedule.js';
 
 export default class DriverProfile extends Component {
     constructor(props) {
@@ -7,8 +8,9 @@ export default class DriverProfile extends Component {
 
         this.state = {
             id: '',
-            image: 'http://lorempixel.com/640/480/cats',
+            image: 'https://via.placeholder.com/150',
             name: 'name',
+            biography: 'nifandslfnasjdnafjkenwklfanelnafk;dsnafkjndsckdsanpfsda',
             zip: 'zip code',
             vehicleInfo: ['ford taurus', '22s']
         }
@@ -24,16 +26,26 @@ export default class DriverProfile extends Component {
             <Container>
                 <Row>
                     <Col>
-                        <Image src={this.state.image}/>
+                        <Row>
+                            <Image src={this.state.image} className="img-thumbnail"/>
+                        </Row>
+                        <Row>
+                            <div>
+                                <h4>Vehicle Specifications</h4>
+                            <ListGroup>
+                                {this.state.vehicleInfo.map((info, index) => <ListGroupItem key={index}>{info}</ListGroupItem>)}
+                            </ListGroup>
+                            </div>
+                        </Row>
                     </Col>
-                    <Col>{this.state.name}</Col>
+                    <Col>
+                        <div>
+                            <h1>{this.state.name}</h1>
+                            <p>{this.state.biography}</p>
+                        </div>
+                        <DriverSchedule />
+                    </Col>
                 </Row>
-            </Container>
-            <Container>
-                <Col>
-                    <Row>{this.state.zip}</Row>
-                    {this.state.vehicleInfo.map((info, index) => <Row key={index}>{info}</Row>)}
-                </Col>
             </Container>
             </>
         )
