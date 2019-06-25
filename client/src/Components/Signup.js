@@ -93,7 +93,7 @@ export default class Signup extends Component {
                                 </Row>
                                 <Row>
                                     <Col>
-                                        <Form.Control name='password' className="m-1" onChange={this.handleChange} placeholder='Password' />
+                                        <Form.Control name='password' type="password" className="m-1" onChange={this.handleChange} placeholder='Password' />
                                     </Col>
                                 </Row>
                         </Form.Group>
