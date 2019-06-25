@@ -27,7 +27,7 @@ export default class PatientProfile extends Component {
                 <Row>
                     <Col>
                         <Row>
-                            <Image src={this.state.image} class="img-thumbnail"/>
+                            <Image src={this.state.image} className="img-thumbnail"/>
                         </Row>
                         <Row>
                             <div>

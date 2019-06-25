@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
+import { Button, Jumbotron } from 'react-bootstrap';
 import Signup from './Signup.js';
 import Login from './Login.js';
 import PatientProfile from './PatientProfile.js';
 import DriverProfile from './DriverProfile.js'
 import CreateAppointment from './CreateAppointment.js';
-import Appointments from './Appointments.js'
-import { Button, Jumbotron } from 'react-bootstrap';
+import Appointments from './Appointments.js';
+import AppointmentNavigation from './AppointmentNavigation.js';
 
 
 export default class MainPage extends Component {
@@ -46,7 +47,8 @@ export default class MainPage extends Component {
                 
             {/* {this.state.isLogin && <Login signup={this.handleSignUp}/>}
             {this.state.isSignup && <Signup login={this.handleLogin}/>} */}
-            <DriverProfile />
+            {/* <DriverProfile /> */}
+            <AppointmentNavigation />
 
 
             </>
