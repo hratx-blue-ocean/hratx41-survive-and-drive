@@ -42,8 +42,12 @@ DROP TABLE IF EXISTS vehicle;
 
 CREATE TABLE vehicle ( 
   vehicleID SERIAL PRIMARY KEY, 
-  truck BOOLEAN NOT NULL, 
-  van BOOLEAN NOT NULL 
+  year INTEGER NOT NULL, 
+  make VARCHAR(12) NOT NULL, 
+  model VARCHAR(20) NOT NULL, 
+  licensePlate VARCHAR(12) NOT NULL, 
+  truck BOOLEAN DEFAULT NULL, 
+  van BOOLEAN DEFAULT NULL 
 ); 
 
 DROP TABLE IF EXISTS appointment;
@@ -59,8 +63,9 @@ CREATE TABLE appointment (
   addressZipCode INTEGER NOT NULL, 
   addressCity VARCHAR(255) NOT NULL, 
   addressState CHAR(2) NOT NULL, 
-  appoinmentTime VARCHAR(10) NOT NULL, 
-  pickupTime VARCHAR(10) NOT NULL, \
+  appoinmentTime TIME NOT NULL, 
+  pickupTime TIME NOT NULL, 
+  endTime TIME NOT NULL, 
   date VARCHAR(12) NOT NULL, 
   toFromBoth VARCHAR (20) NOT NULL 
 ); 

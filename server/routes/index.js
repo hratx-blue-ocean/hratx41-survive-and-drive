@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 //Note from Crew: I tried to get the boiler plate set up for this, but there may very well be some errors
 
 const express = require('express');
