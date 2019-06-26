@@ -3,6 +3,8 @@ const createError = require('http-errors');
 const express = require('express');
 const app = express();
 
+const routers = require('./routes/routers');
+
 const port = process.env.PORT || 8000;
 
 
@@ -18,6 +20,8 @@ app.use((_, res, next) => {
 // app.use(logger('dev'));
 
 app.use(express.static('./client/public'));
+
+app.use('api/users/survivors/', routers.survivors);
 
 
 // app.get('/', (req, res) => res.send('Hello World!'));

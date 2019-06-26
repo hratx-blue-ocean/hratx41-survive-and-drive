@@ -1,15 +1,13 @@
-//Note from Crew: I tried to get the boiler plate set up for this, but there may very well be some errors
+const drivers = require('./drivers');
+const appointments = require('./appointments');
+const survivors = requrie('./survivors');
 
-const express = require('express');
-const app = express();
-const port = 3000;
-const bodyParser = require('body-parser');
-const PORT = 3005;
-const db = require('../database/index.js');
 
-app.use(express.static('public'))
-app.use(bodyParser.json())
-app.use()
+module.exports = {
+    drivers,
+    appointments,
+    survivors
+}
 
 
 
@@ -227,9 +225,3 @@ app.use()
 //       }
 //     })
 // })
-
-
-
-app.listen(port, () => console.log(`Example app listening on port ${port}!`))
-
-module.exports = { app }
