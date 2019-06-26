@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Row, Col, FormControl, Button, Modal, InputGroup, Container, Image } from 'react-bootstrap';
 import Appointments from './Appointments.js';
+import NavigationBar from './NavigationBar.js'
 
 export default class AppointmentNavigation extends Component {
     constructor(props) {
@@ -35,6 +36,7 @@ export default class AppointmentNavigation extends Component {
     render() {
         return (
             <>
+            <NavigationBar />
             <Container style={{
                 marginTop: 40
             }}>

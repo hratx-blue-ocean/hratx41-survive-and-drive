@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Image, Container, Row, Col, ListGroup, ListGroupItem } from 'react-bootstrap';
 import Appointments from './Appointments.js';
+import NavigationBar from './NavigationBar.js';
 
 export default class PatientProfile extends Component {
     constructor(props) {
@@ -24,6 +25,7 @@ export default class PatientProfile extends Component {
     render() {
         return(
             <>
+            <NavigationBar />
             <Container>
                 <Row>
                     <Col>

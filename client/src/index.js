@@ -7,6 +7,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 import MainPage from './Components/MainPage.js';
 import PatientProfile from './Components/PatientProfile.js';
 import DriverProfile from './Components/DriverProfile.js';
+import AppointmentNavigation from './Components/AppointmentNavigation.js';
 // import './index.css';
 
 
@@ -17,7 +18,7 @@ const routing = (
             <Route exact path='/' component={MainPage} />
             <Route path="/patient" component={PatientProfile}/>
             <Route path="/driver" component={DriverProfile}/>
-            <Route path="/main" component={MainPage}/>
+            <Route path="/appointments" component={AppointmentNavigation}/>
         </div>
     </Router>
 )
