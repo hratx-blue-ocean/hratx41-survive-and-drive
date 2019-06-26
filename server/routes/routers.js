@@ -1,6 +1,6 @@
 const drivers = require('./drivers');
 const appointments = require('./appointments');
-const survivors = requrie('./survivors');
+const survivors = require('./survivors');
 
 
 module.exports = {

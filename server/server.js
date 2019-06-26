@@ -5,7 +5,7 @@ const app = express();
 
 const routers = require('./routes/routers');
 
-const port = process.env.PORT || 8000;
+const port = process.env.PORT || 8002;
 
 
 
@@ -19,7 +19,7 @@ app.use((_, res, next) => {
 
 // app.use(logger('dev'));
 
-app.use(express.static('./client/public'));
+app.use(express.static('../client/public/'));
 
 app.use('api/users/survivors/', routers.survivors);
 
