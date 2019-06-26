@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Row, Col, Form, Button, Modal } from 'react-bootstrap';
+import { Row, Col, FormControl, Button, Modal, InputGroup, Container } from 'react-bootstrap';
 import Appointments from './Appointments.js';
 // import '../Styles/AppointmentNavigationStylesheet.css';
 
@@ -11,8 +11,10 @@ export default class AppointmentNavigation extends Component {
             zip: '',
             appointments: ['appointment1', 'appointment2', 'appointment3', 'appointment4'],
         }
+        
         this.handleZipInput = this.handleZipInput.bind(this);
         this.handleZipSubmit = this.handleZipSubmit.bind(this);
+        
     }
 
     componentDidMount() {
@@ -33,30 +35,25 @@ export default class AppointmentNavigation extends Component {
     render() {
         return (
             <>
-            <Modal.Dialog size='xl' className='modal-appt-navigation'>
-                <Modal.Header>
-                    <Modal.Title>
-                        Available Appointments
-                    </Modal.Title>
-                </Modal.Header>
-            <Row>
-                <Col>
-                    <Form.Control onChange={this.handleZipInput} placeholder='Zip Code' style={{
-                        marginTop: 10,
-                        width: 100,
-                        height: 30
-                    }}></Form.Control>
-                </Col>
-                <Col>
-                    <Button onClick={this.handleZipSubmit}>Submit</Button>
-                </Col>
-            </Row>
-            <Row>
-                <Col>
-                    <Appointments appointmentList={this.state.appointments}/>
-                </Col>
-            </Row>
-            </Modal.Dialog> 
+            <Container>
+                <Row>
+                    <Col>
+                        <Row>
+                            <InputGroup >
+                                <FormControl placeholder="Zip Code" onChange={this.handleZipInput}/>
+                                <InputGroup.Append>
+                                <Button variant="outline-secondary" onClick={this.handleZipSubmit}>Submit</Button>
+                                </InputGroup.Append>
+                            </InputGroup>
+                        </Row>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col>
+                        <Appointments appointments={this.state.appointments}/>
+                    </Col>
+                </Row>
+            </Container>
             </>
         )
     }

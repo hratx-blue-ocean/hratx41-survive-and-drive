@@ -42,10 +42,10 @@ export default class MainPage extends Component {
         return (
             <>
             <Header signup={this.handleSignUp} login={this.handleLogin}/>
-            {this.state.isLogin && <Login signup={this.handleSignUp}/>}
-            {this.state.isSignup && <Signup login={this.handleLogin}/>}
-
-
+            {/* {this.state.isLogin && <Login signup={this.handleSignUp}/>}
+            {this.state.isSignup && <Signup login={this.handleLogin}/>} */}
+            <AppointmentNavigation />
+            {/* <PatientProfile /> */}
             </>
         )
     }
