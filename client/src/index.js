@@ -16,7 +16,8 @@ const routing = (
     <Router >
         <div>
             <Route exact path='/' component={MainPage} />
-            <Route path="/patient" component={PatientProfile}/>
+            <Route path='/patient' render={(props) => <PatientProfile {...props} />}/>
+
             <Route path="/driver" component={DriverProfile}/>
             <Route path="/appointments" component={AppointmentNavigation}/>
         </div>

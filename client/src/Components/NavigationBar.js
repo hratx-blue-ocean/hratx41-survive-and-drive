@@ -7,7 +7,8 @@ export default class NavigationBar extends Component {
     constructor(props){
         super(props);
         this.state = {
-
+            //need to pass id down to state   ex. isDriver: true, isPatient: false???  
+            id: 2, 
         }
     }
 
@@ -23,9 +24,14 @@ export default class NavigationBar extends Component {
             <Nav variant="dark" fixed="top" className="ml-auto pr-md" activeKey="1">
                 <Nav.Item >
                     <ButtonToolbar>
-                        <Link to="/appointments"><Button variant="outline-dark" className="m-2">Appointment List</Button></Link>
-                        <Link to="/patient"><Button variant="outline-dark" className="m-2">My Profile</Button></Link>
-                        <Link to="/"><Button variant="outline-dark" className="m-2">Logout</Button></Link>
+                        
+                        <Link to={{pathname: "/appointments", state: {id: this.state.id}}}><Button variant="outline-dark" className="m-2">Appointment List</Button></Link>
+                        
+                        <Link to={{pathname: "/patient", state: {id: this.state.id}}}><Button variant="outline-dark" className="m-2">My Profile</Button></Link>
+                        
+                        
+                        
+                        <Link to={{pathname: "/", state: {id: null}}}><Button variant="outline-dark" className="m-2">Logout</Button></Link>
                     </ButtonToolbar>
                 </Nav.Item>
             </Nav>

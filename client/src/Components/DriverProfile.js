@@ -3,6 +3,7 @@ import { Image, Container, Row, Col, ListGroup, ListGroupItem } from 'react-boot
 import DriverSchedule from './DriverSchedule.js';
 import NavigationBar from './NavigationBar.js';
 
+
 export default class DriverProfile extends Component {
     constructor(props) {
         super(props);
