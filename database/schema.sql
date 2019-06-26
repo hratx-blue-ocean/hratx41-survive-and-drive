@@ -1,3 +1,4 @@
+
 DROP DATABASE IF EXISTS surviveDrive;
 
 CREATE DATABASE surviveDrive;
@@ -63,9 +64,14 @@ CREATE TABLE appointment (
   addressZipCode INTEGER NOT NULL, 
   addressCity VARCHAR(255) NOT NULL, 
   addressState CHAR(2) NOT NULL, 
+<<<<<<< HEAD
   appoinmentTime TIME NOT NULL, 
   pickupTime TIME NOT NULL, 
   endTime TIME NOT NULL, 
+=======
+  appoinmentTime VARCHAR(10) NOT NULL, 
+  pickupTime VARCHAR(10) NOT NULL,
+>>>>>>> 3fe1a13e9a949e71d13274d1309e07df19e5f9ff
   date VARCHAR(12) NOT NULL, 
   toFromBoth VARCHAR (20) NOT NULL 
 ); 
@@ -76,5 +82,4 @@ DROP TABLE IF EXISTS healthEquipment;
 CREATE TABLE healthEquipment (
   equip_id SERIAL PRIMARY KEY, 
   wheelChair BOOLEAN DEFAULT false, 
-  oxygen BOOLEAN DEFAULT false 
-);
+  oxyge

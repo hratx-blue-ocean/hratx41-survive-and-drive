@@ -1,13 +1,8 @@
 /* eslint-disable no-console */
-const { Client } = require('pg');
+const client = require('./index');
 require('dotenv').config();
 
-const client = new Client({
-  connectionString: process.env.DATABASE_URL,
-  ssl: true
-});
 
-client.connect()
 
 const addAppointment = (appointmentInfo, cb) => { 
   client.query(`INSERT INTO appointment (

@@ -4,7 +4,9 @@ const express = require('express');
 const app = express();
 const routers = require('./routes/index')
 
-const port = process.env.PORT || 8000;
+const routers = require('./routes/routers');
+
+const port = process.env.PORT || 8002;
 
 
 
@@ -18,12 +20,13 @@ app.use((_, res, next) => {
 
 // app.use(logger('dev'));
 
-app.use(express.static('./client/public'));
+app.use(express.static('../client/public/'));
+
+app.use('/api/users/survivors/', routers.survivors);
 
 app.use('api/users/drivers', routers.drivers);
 
 
-// app.get('/', (req, res) => res.send('Hello World!'));
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
 
