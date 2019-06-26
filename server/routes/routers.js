@@ -1,22 +1,9 @@
-<<<<<<< HEAD:server/routes/index.js
 /* eslint-disable no-console */
 //Note from Crew: I tried to get the boiler plate set up for this, but there may very well be some error
 
 const drivers = require('./drivers');
 
 module.exports = drivers;
-=======
-const drivers = require('./drivers');
-const appointments = require('./appointments');
-const survivors = require('./survivors');
-
-
-module.exports = {
-    drivers,
-    appointments,
-    survivors
-}
->>>>>>> 3fe1a13e9a949e71d13274d1309e07df19e5f9ff:server/routes/routers.js
 
 
 
