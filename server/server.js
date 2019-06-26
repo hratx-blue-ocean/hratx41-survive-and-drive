@@ -2,8 +2,6 @@ const createError = require('http-errors');
 // const logger = require('morgan');
 const express = require('express');
 const app = express();
-const routers = require('./routes/index')
-
 const routers = require('./routes/routers');
 
 const port = process.env.PORT || 8002;
