@@ -1,9 +1,4 @@
 
-DROP DATABASE IF EXISTS surviveDrive;
-
-CREATE DATABASE surviveDrive;
-
-SELECT surviveDrive;
 
 DROP TABLE IF EXISTS survivor;
 
@@ -72,4 +67,5 @@ DROP TABLE IF EXISTS healthEquipment;
 CREATE TABLE healthEquipment (
   equip_id SERIAL PRIMARY KEY, 
   wheelChair BOOLEAN DEFAULT false, 
-  oxyge
+  oxygen BOOLEAN DEFAULT false
+);

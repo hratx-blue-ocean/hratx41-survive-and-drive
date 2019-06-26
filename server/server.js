@@ -3,10 +3,10 @@ const createError = require('http-errors');
 const express = require('express');
 const app = express();
 
+
 const routers = require('./routes/routers');
 
 const port = process.env.PORT || 8002;
-
 
 
 
@@ -21,6 +21,8 @@ app.use((_, res, next) => {
 
 app.use(express.static('../client/public/'));
 
+
+/* Currently we are only importing SURVIVORS ROUTER to test it and try to get it running */
 app.use('/api/users/survivors/', routers.survivors);
 
 

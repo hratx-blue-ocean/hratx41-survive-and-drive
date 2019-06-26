@@ -149,12 +149,12 @@ const addSurvivor = (survivorProfile, cb) => {
   client.query(`INSERT INTO survivor ( 
     firstName,  lastName, email, phoneNumber, addressLineOne, addressLineTwo, addressZipCode, addressState, 
     photoLink, healthEquipmentID) VALUES ( 
-      ${survivorProfile.firstName},  ${survivorProfile.lastName}, ${survivorProfile.email}, 
-      ${survivorProfile.phoneNumber}, ${survivorProfile.addressLineOne}, ${survivorProfile.addressLineTwo}, 
-      ${survivorProfile.addressZipCode}, ${survivorProfile.addressState}, ${survivorProfile.photoLink}, 
-      ${survivorProfile.healthEquipmentID} )`, (err, results) => { 
+      '${survivorProfile.firstName}',  '${survivorProfile.lastName}', '${survivorProfile.email}', 
+      '${survivorProfile.phoneNumber}', '${survivorProfile.addressLineOne}', '${survivorProfile.addressLineTwo}', 
+      ${survivorProfile.addressZipCode}, '${survivorProfile.addressState}', '${survivorProfile.photoLink}', 
+      ${survivorProfile.healthEquipmentID} );`, (err, results) => { 
         if (err) { 
-          console.log(err) 
+          console.log(err)
           cb(err, null) 
         } else { 
           cb(null, results)
@@ -213,8 +213,10 @@ const deleteSurvivor = (survivorId, cb) => {
     } else { 
       cb(null, `Survivor with ID: ${survivorId}, deleted`)
     }
-  }); 
+  });
 }
+
+
 
 module.exports = { addAppointment, getAppointment, updateAppointment, 
   updateAppointmentDestinationDriver, updateAppointmentReturnDriver, 
