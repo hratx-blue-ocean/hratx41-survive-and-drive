@@ -1,16 +1,9 @@
 /* eslint-disable no-console */
-//Note from Crew: I tried to get the boiler plate set up for this, but there may very well be some errors
+//Note from Crew: I tried to get the boiler plate set up for this, but there may very well be some error
 
-const express = require('express');
-const app = express();
-const port = 3000;
-const bodyParser = require('body-parser');
-const PORT = 3005;
-const db = require('../database/index.js');
+const drivers = require('./drivers');
 
-app.use(express.static('public'))
-app.use(bodyParser.json())
-app.use()
+module.exports = drivers;
 
 
 

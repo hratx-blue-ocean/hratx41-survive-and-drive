@@ -2,6 +2,7 @@ const createError = require('http-errors');
 // const logger = require('morgan');
 const express = require('express');
 const app = express();
+const routers = require('./routes/index')
 
 const port = process.env.PORT || 8000;
 
@@ -18,6 +19,8 @@ app.use((_, res, next) => {
 // app.use(logger('dev'));
 
 app.use(express.static('./client/public'));
+
+app.use('api/users/drivers', routers.drivers);
 
 
 // app.get('/', (req, res) => res.send('Hello World!'));
