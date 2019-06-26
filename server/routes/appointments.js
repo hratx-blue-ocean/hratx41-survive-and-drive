@@ -15,55 +15,57 @@ router.post('/', (req, res) => {
   })
   
   //get appointment
-  router.get('/', (req, res) => {
-      db.getAppointment(req.body.appointmentId, (err, items) => {
+  router.get('/:id', (req, res) => {
+      db.getAppointment(req.params.id, (err, items) => {
           if (err) {
-              console.log(`Error finding items w/ category ${req.body.appointmentId}:`);
+              console.log(`Error finding items w/ category :`);
               res.status(401).send(err);
           } else {
-              console.log(`Success! Found results for ${req.body.appointmentId}.`);
+              console.log(`Success! Found results for .`);
               res.status(201).send(items);
           }
       });
   });
+
+
+//  IGNORING FOR MVP    
+//update appointment return driver
+//   router.put('/', (req, res) => {
+//       db.updateAppointmentReturnDriver(req.body.appointmentId, req.body.driverId, (err, items) => {
+//           if(err) { 
+//               console.log('Error updating return driver.');
+//               res.status(401).send(err);
+//           } else {
+//               console.log(`Success.  Updated return driver for appointment ${req.body.appointmentId}`);
+//               res.status(201).send(items);
+//           }
+//       })
+//   })
   
-  //update appointment return driver
-  router.put('/', (req, res) => {
-      db.updateAppointmentReturnDriver(req.body.appointmentId, req.body.driverId, (err, items) => {
-          if(err) { 
-              console.log('Error updating return driver.');
-              res.status(401).send(err);
-          } else {
-              console.log(`Success.  Updated return driver for appointment ${req.body.appointmentId}`);
-              res.status(201).send(items);
-          }
-      })
-  })
+//   //update appointment destination driver
+//   router.put('/', (req, res) => {
+//       db.updateAppointmentReturnDriver(req.body.appointmentId, req.body.driverId, (err, items) => {
+//           if(err) { 
+//               console.log('Error updating return driver.');
+//               res.status(401).send(err);
+//           } else {
+//               console.log(`Success.  Updated return driver for appointment ${req.body.appointmentId}`);
+//               res.status(201).send(items);
+//           }
+//       })
+//   })
   
-  //update appointment destination driver
-  router.put('/', (req, res) => {
-      db.updateAppointmentReturnDriver(req.body.appointmentId, req.body.driverId, (err, items) => {
-          if(err) { 
-              console.log('Error updating return driver.');
-              res.status(401).send(err);
-          } else {
-              console.log(`Success.  Updated return driver for appointment ${req.body.appointmentId}`);
-              res.status(201).send(items);
-          }
-      })
-  })
-  
-  //delete appointment
-  router.delete('/', (req, res) => {
-      db.deleteAppointment(req.body.appointmentId, (err, items) => {
-        if(err) {
-            console.log(`Error deleting appointment: ${req.body.appointmentId}.`);
-            res.status(401).send(err);
-        } else {
-            console.log(`Success.  Deleted appointment: ${req.body.appointmentId}.`);
-            res.status(201).send(items);
-        }
-      })
-  })
+//   //delete appointment
+//   router.delete('/', (req, res) => {
+//       db.deleteAppointment(req.body.appointmentId, (err, items) => {
+//         if(err) {
+//             console.log(`Error deleting appointment: ${req.body.appointmentId}.`);
+//             res.status(401).send(err);
+//         } else {
+//             console.log(`Success.  Deleted appointment: ${req.body.appointmentId}.`);
+//             res.status(201).send(items);
+//         }
+//       })
+//   })
 
   module.exports = router;
