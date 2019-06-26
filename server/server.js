@@ -21,10 +21,9 @@ app.use((_, res, next) => {
 
 app.use(express.static('../client/public/'));
 
-app.use('api/users/survivors/', routers.survivors);
+app.use('/api/users/survivors/', routers.survivors);
 
 
-// app.get('/', (req, res) => res.send('Hello World!'));
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
 

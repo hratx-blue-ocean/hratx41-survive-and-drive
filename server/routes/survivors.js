@@ -1,5 +1,9 @@
-const router = require('express').Router();
+const express = require('express');
+const router = express.Router();
 const db = require('../../database/queries.js');
+
+
+router.use(express.json());
 
 router.post('/', (req, res) => {
     db.addSurvivor(req.body, (err, items) => {
