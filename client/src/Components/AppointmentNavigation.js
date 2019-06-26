@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import { Row, Col, FormControl, Button, Modal, InputGroup, Container } from 'react-bootstrap';
+import { Row, Col, FormControl, Button, Modal, InputGroup, Container, Image } from 'react-bootstrap';
 import Appointments from './Appointments.js';
-// import '../Styles/AppointmentNavigationStylesheet.css';
 
 export default class AppointmentNavigation extends Component {
     constructor(props) {
@@ -10,6 +9,7 @@ export default class AppointmentNavigation extends Component {
         this.state = {
             zip: '',
             appointments: ['appointment1', 'appointment2', 'appointment3', 'appointment4'],
+            map: 'https://via.placeholder.com/450'
         }
         
         this.handleZipInput = this.handleZipInput.bind(this);
@@ -35,22 +35,40 @@ export default class AppointmentNavigation extends Component {
     render() {
         return (
             <>
-            <Container>
+            <Container style={{
+                marginTop: 40
+            }}>
                 <Row>
                     <Col>
                         <Row>
-                            <InputGroup >
+                            <InputGroup style={{
+                                width: 450
+                            }}>
                                 <FormControl placeholder="Zip Code" onChange={this.handleZipInput}/>
                                 <InputGroup.Append>
                                 <Button variant="outline-secondary" onClick={this.handleZipSubmit}>Submit</Button>
                                 </InputGroup.Append>
                             </InputGroup>
                         </Row>
+                        <Row>
+                            <Image src={this.state.map} className="img-thumbnail" style={{
+                                marginTop: 20
+                            }}/>
+                        </Row>
                     </Col>
-                </Row>
-                <Row>
                     <Col>
-                        <Appointments appointments={this.state.appointments}/>
+                        <Modal.Dialog style={{
+                            position: "absolute",
+                            marginTop: 60,
+                            right: 40,
+                            width: 700
+                        }}>
+                            <Modal.Header>Appointments Needing Drivers</Modal.Header>
+                            <Modal.Body>
+                                <Appointments appointments={this.state.appointments}/>
+                            </Modal.Body>
+                        </Modal.Dialog>
+                        
                     </Col>
                 </Row>
             </Container>
