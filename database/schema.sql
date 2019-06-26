@@ -1,8 +1,16 @@
-DROP DATABASE IF EXISTS surviveDrive;
+DROP DATABASE IF EXISTS uplift;
 
-CREATE DATABASE surviveDrive;
+CREATE DATABASE uplift;
 
-SELECT surviveDrive;
+SELECT uplift;
+
+DROP TABLE IF EXISTS healthEquipment;
+
+CREATE TABLE healthEquipment (
+  equip_id SERIAL PRIMARY KEY, 
+  wheelChair BOOLEAN DEFAULT false, 
+  oxygen BOOLEAN DEFAULT false 
+);
 
 DROP TABLE IF EXISTS survivor;
 
@@ -23,6 +31,14 @@ CREATE TABLE survivor (
 
 DROP TABLE IF EXISTS driver;
 
+DROP TABLE IF EXISTS vehicle; 
+
+CREATE TABLE vehicle ( 
+  vehicleID SERIAL PRIMARY KEY, 
+  truck BOOLEAN NOT NULL, 
+  van BOOLEAN NOT NULL 
+); 
+
 CREATE TABLE driver (
   driver_id SERIAL PRIMARY KEY,
   firstName VARCHAR(255) NOT NULL,
@@ -38,13 +54,6 @@ CREATE TABLE driver (
   vehicleTypes INTEGER REFERENCES vehicle(vehicleID) 
 );
 
-DROP TABLE IF EXISTS vehicle; 
-
-CREATE TABLE vehicle ( 
-  vehicleID SERIAL PRIMARY KEY, 
-  truck BOOLEAN NOT NULL, 
-  van BOOLEAN NOT NULL 
-); 
 
 DROP TABLE IF EXISTS appointment;
 
@@ -58,18 +67,9 @@ CREATE TABLE appointment (
   addressLineTwo VARCHAR(255), 
   addressZipCode INTEGER NOT NULL, 
   addressCity VARCHAR(255) NOT NULL, 
-  addressState CHAR(2) NOT NULL, 
+  addressState VARCHAR(12) NOT NULL, 
   appoinmentTime VARCHAR(10) NOT NULL, 
-  pickupTime VARCHAR(10) NOT NULL, \
+  pickupTime VARCHAR(10) NOT NULL,
   date VARCHAR(12) NOT NULL, 
   toFromBoth VARCHAR (20) NOT NULL 
 ); 
-
-
-DROP TABLE IF EXISTS healthEquipment;
-
-CREATE TABLE healthEquipment (
-  equip_id SERIAL PRIMARY KEY, 
-  wheelChair BOOLEAN DEFAULT false, 
-  oxygen BOOLEAN DEFAULT false 
-);

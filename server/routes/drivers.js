@@ -27,33 +27,31 @@ router.get('/', (req, res) => {
     });
 });
 
-
-//  IGNORING FOR MVP
-// //update driver
-// router.put('/', (req, res) => {
-//     db.updateDriver(req.body.driverId, (err, items) => {
-//         if(err) { 
-//             console.log('Error updating driver.');
-//             res.status(401).send(err);
-//         } else {
-//             console.log(`Success.  Updated driver: ${req.body.driverId}`);
-//             res.status(201).send(items);
-//         }
-//     })
-// })
+//update driver
+router.put('/', (req, res) => {
+    db.updateDriver(req.body.driverId, (err, items) => {
+        if(err) { 
+            console.log('Error updating driver.');
+            res.status(401).send(err);
+        } else {
+            console.log(`Success.  Updated driver: ${req.body.driverId}`);
+            res.status(201).send(items);
+        }
+    })
+})
 
 
-// //delete driver
-// router.delete('/', (req, res) => {
-//     db.deleteDriver(req.body.driverId, (err, items) => {
-//       if(err) {
-//           console.log(`Error deleting driver: ${req.body.driverId}.`);
-//           res.status(401).send(err);
-//       } else {
-//           console.log(`Success.  Deleted driver: ${req.body.driverId}.`);
-//           res.status(201).send(items);
-//       }
-//     })
-// })
+//delete driver
+router.delete('/', (req, res) => {
+    db.deleteDriver(req.body.driverId, (err, items) => {
+      if(err) {
+          console.log(`Error deleting driver: ${req.body.driverId}.`);
+          res.status(401).send(err);
+      } else {
+          console.log(`Success.  Deleted driver: ${req.body.driverId}.`);
+          res.status(201).send(items);
+      }
+    })
+})
 
 module.exports = router;

@@ -1,8 +1,6 @@
 const router = require('express').Router();
 const db = require('../../database/queries.js');
 
-
-
 router.post('/', (req, res) => {
     db.addSurvivor(req.body, (err, items) => {
         if(err) {
@@ -39,33 +37,32 @@ router.get('/all', (req, res) => {
     });
 });
 
-// IGNORING FOR MVP, DO NOT ERASE
-//
-//update survivor
-// router.put('/', (req, res) => {
-//     db.updateSurvivor(req.body.survivorId, (err, items) => {
-//         if(err) { 
-//             console.log('Error updating survivor.');
-//             res.status(401).send(err);
-//         } else {
-//             console.log(`Success.  Updated survivor: ${req.body.survivorId}`);
-//             res.status(201).send(items);
-//         }
-//     })
-// })
 
-// //delete survivor
-// router.delete('/', (req, res) => {
-//     db.deleteSurvivor(req.body.survivorId, (err, items) => {
-//       if(err) {
-//           console.log(`Error deleting survivor: ${req.body.survivorId}.`);
-//           res.status(401).send(err);
-//       } else {
-//           console.log(`Success.  Deleted survivor: ${req.body.survivorId}.`);
-//           res.status(201).send(items);
-//       }
-//     })
-// })
+//update survivor
+router.put('/', (req, res) => {
+    db.updateSurvivor(req.body.survivorId, (err, items) => {
+        if(err) { 
+            console.log('Error updating survivor.');
+            res.status(401).send(err);
+        } else {
+            console.log(`Success.  Updated survivor: ${req.body.survivorId}`);
+            res.status(201).send(items);
+        }
+    })
+})
+
+//delete survivor
+router.delete('/', (req, res) => {
+    db.deleteSurvivor(req.body.survivorId, (err, items) => {
+      if(err) {
+          console.log(`Error deleting survivor: ${req.body.survivorId}.`);
+          res.status(401).send(err);
+      } else {
+          console.log(`Success.  Deleted survivor: ${req.body.survivorId}.`);
+          res.status(201).send(items);
+      }
+    })
+})
 
 
 module.exports = router;
