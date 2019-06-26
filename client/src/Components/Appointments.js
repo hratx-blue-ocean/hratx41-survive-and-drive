@@ -1,30 +1,13 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { ListGroup, ListGroupItem } from 'react-bootstrap';
 
-export default class Appointments extends Component {
-    constructor(props) {
-        super(props);
 
-        this.state = {
-            id: '',
-            appointments: ['appointment1', 'appointment2', 'appointment3'] //array of objects
-        }
-    }
-
-    componentDidMount() {
-        //axios request to get all appoints from this user id
-        // this.setState({
-        //     appointments: response.data.appointments
-        // })
-    }
-
-    render() {
-        return (
+const Appointments = props => (
             <>
                 <ListGroup>
-                    {this.state.appointments.map((appointment, index) => <ListGroupItem>{appointment}</ListGroupItem>)}
+                    {props.appointments.map((appointment, index) => <ListGroupItem key={index}>{appointment}</ListGroupItem>)}
                 </ListGroup>
             </>
-        )
-    }
-}
+)
+
+export default Appointments;
