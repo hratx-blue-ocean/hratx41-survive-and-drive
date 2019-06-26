@@ -12,7 +12,8 @@ export default class DriverProfile extends Component {
             name: 'name',
             biography: 'nifandslfnasjdnafjkenwklfanelnafk;dsnafkjndsckdsanpfsda',
             zip: 'zip code',
-            vehicleInfo: ['ford taurus', '22s']
+            vehicleInfo: ['ford taurus', '22s'],
+            schedule: ['Monday', 'Tuesday', "wed", 'thurs', 'fri', 'sat', 'sun']
         }
     }
 
@@ -43,7 +44,7 @@ export default class DriverProfile extends Component {
                             <h1>{this.state.name}</h1>
                             <p>{this.state.biography}</p>
                         </div>
-                        <DriverSchedule />
+                        <DriverSchedule schedule={this.state.schedule}/>
                     </Col>
                 </Row>
             </Container>

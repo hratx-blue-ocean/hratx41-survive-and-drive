@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { Nav, NavDropdown, Button, ButtonToolbar, Col, Navbar, NavItem } from 'react-bootstrap';
+import { Nav, Button, ButtonToolbar, Navbar } from 'react-bootstrap';
 
 
-export default class NavBar extends Component {
+export default class UnloggedHeader extends Component {
     constructor(props){
         super(props);
         this.state = {

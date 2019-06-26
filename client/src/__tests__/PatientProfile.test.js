@@ -9,7 +9,7 @@ afterEach(cleanup);
 
 
 it('CheckboxWithLabel changes the text after click', async () => {
-    const { getByText } = render(<App/>,);
+    const { getByText } = render(<PatientProfile/>,);
 
     const dolphin = await waitForElement(() => getByText(/dolphin/i),)
 

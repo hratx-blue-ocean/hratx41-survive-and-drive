@@ -1,22 +1,13 @@
 import React, { Component } from 'react';
 import { ListGroup, ListGroupItem } from 'react-bootstrap';
 
-export default class DriverSchedule extends Component {
-    constructor(props) {
-        super(props);
 
-        this.state = {
-            schedule: ['Monday', 'Tuesday', "wed", 'thurs', 'fri', 'sat', 'sun']
-        }
-    }
-
-    render() {
-        return (
+const DriverSchedule = props => (
             <>
                 <ListGroup>
-                    {this.state.schedule.map((appointment, index) => <ListGroupItem key={index}>{appointment}</ListGroupItem>)}
+                    {props.schedule.map((appointment, index) => <ListGroupItem key={index}>{appointment}</ListGroupItem>)}
                 </ListGroup>
             </>
-        )
-    }
-}
+)
+
+export default DriverSchedule;

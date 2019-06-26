@@ -12,7 +12,8 @@ export default class PatientProfile extends Component {
             name: 'Name',
             zip: 'zip code',
             biography: 'jfoidpasjfipjdsapifjdsapjfpdjsafopjdsioafjodipsajfiodjsaofjdoisajfopdsnaofinpdsianfipdsnafipndsia',
-            dependencies: ['wheelchair', 'oxygen tank']
+            dependencies: ['wheelchair', 'oxygen tank'],
+            appointments: ['appointment1', 'appointment2', 'appointment3', 'yolo']
         }
     }
 
@@ -43,7 +44,7 @@ export default class PatientProfile extends Component {
                             <h1>{this.state.name}</h1>
                             <p>{this.state.biography}</p>
                         </div>
-                        <Appointments />
+                        <Appointments appointments={this.state.appointments}/>
                     </Col>
                 </Row>
             </Container>

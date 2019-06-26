@@ -40,7 +40,7 @@ export default class Login extends Component {
                             </Row>
                             <Row>
                                 <Col>
-                                <Form.Control name='password' className="m-1" onChange={this.handleChange} placeholder='Password'></Form.Control>
+                                <Form.Control name='password' className="m-1" type="password" onChange={this.handleChange} placeholder='Password'></Form.Control>
                                 </Col>
                             </Row>
                         </Form.Group>
