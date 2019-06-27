@@ -2,9 +2,12 @@ const createError = require('http-errors');
 // const logger = require('morgan');
 const express = require('express');
 const app = express();
+
+const path = require('path');
+const port = process.env.PORT || 8000;
+=======
 const routers = require('./routes/routes');
 
-const port = process.env.PORT || 8002;
 
 
 
@@ -19,6 +22,15 @@ app.use((_, res, next) => {
 // app.use(logger('dev'));
 
 app.use(express.static('./client/public'));
+
+app.get('/*', function(req, res) {
+    res.sendFile(path.join(__dirname, '../client/public/index.html'), function(err) {
+      if (err) {
+        res.status(500).send(err)
+      }
+    })
+  })
+
 
 
 //Routes to get JSON data from PostgreSQL DB.  

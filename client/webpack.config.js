@@ -4,8 +4,9 @@ const DIST_DIR = path.join(__dirname, '/public');
 module.exports = {
   entry: `${SRC_DIR}/index.js`,
   output: {
-  filename: 'bundle.js',
-  path: DIST_DIR
+    filename: 'bundle.js',
+    path: DIST_DIR,
+    publicPath: '/'
   },
   module : {
     rules : [
@@ -28,6 +29,7 @@ module.exports = {
   devServer: {
     contentBase: DIST_DIR,
     compress: true,
-    port: 9000
+    port: 9000,
+    historyApiFallback: true
   }
 };
