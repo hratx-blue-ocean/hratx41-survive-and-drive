@@ -1,17 +1,19 @@
 /* eslint-disable no-console */
 const { Client } = require('pg');
-const {URL_STRING} = require('./asdf');
+// const {URL_STRING} = require('./asdf');
 
 
 //Client will need to have an object argument when working in deployment.  Need to create a local postgress database for now.
 const client = new Client({
-  connectionString: URL_STRING,
-  ssl: true
-});  
+  user: process.env.DB_USER,
+  host: process.env.DB_HOST,
+  database: process.env.DB_NAME,
+  password: process.env.DB_PASSWORD,
+  port: process.env.DB_PORT
+}) 
 
 client.connect(() => { 
-  console.log(`connected!`);
-});
-
+  console.log(`connected to Heroku!`);
+}); 
 
 module.exports = client;

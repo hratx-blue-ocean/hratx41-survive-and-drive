@@ -19,8 +19,21 @@ CREATE TABLE survivor (
   addressCity VARCHAR(255) NOT NULL, 
   addressState CHAR(2) NOT NULL, 
   photoLink VARCHAR(255), 
-  healthEquipmentID INTEGER REFERENCES healthEquipment(equip_id) DEFAULT NULL 
-);
+  wheelChair BOOLEAN DEFAULT false, 
+  oxygenTank BOOLEAN DEFAULT false
+); 
+
+DROP TABLE IF EXISTS vehicle; 
+
+CREATE TABLE vehicle ( 
+  vehicleID SERIAL PRIMARY KEY, 
+  year INTEGER NOT NULL, 
+  make VARCHAR(12) NOT NULL, 
+  model VARCHAR(20) NOT NULL, 
+  licensePlate VARCHAR(12) NOT NULL, 
+  truck BOOLEAN DEFAULT NULL, 
+  van BOOLEAN DEFAULT NULL 
+); 
 
 DROP TABLE IF EXISTS driver;
 
@@ -39,18 +52,6 @@ CREATE TABLE driver (
   vehicleTypes INTEGER REFERENCES vehicle(vehicleID) 
 );
 
-DROP TABLE IF EXISTS vehicle; 
-
-CREATE TABLE vehicle ( 
-  vehicleID SERIAL PRIMARY KEY, 
-  year INTEGER NOT NULL, 
-  make VARCHAR(12) NOT NULL, 
-  model VARCHAR(20) NOT NULL, 
-  licensePlate VARCHAR(12) NOT NULL, 
-  truck BOOLEAN DEFAULT NULL, 
-  van BOOLEAN DEFAULT NULL 
-); 
-
 DROP TABLE IF EXISTS appointment;
 
 CREATE TABLE appointment (
@@ -64,22 +65,17 @@ CREATE TABLE appointment (
   addressZipCode INTEGER NOT NULL, 
   addressCity VARCHAR(255) NOT NULL, 
   addressState CHAR(2) NOT NULL, 
-<<<<<<< HEAD
   appoinmentTime TIME NOT NULL, 
   pickupTime TIME NOT NULL, 
   endTime TIME NOT NULL, 
-=======
-  appoinmentTime VARCHAR(10) NOT NULL, 
-  pickupTime VARCHAR(10) NOT NULL,
->>>>>>> 3fe1a13e9a949e71d13274d1309e07df19e5f9ff
   date VARCHAR(12) NOT NULL, 
   toFromBoth VARCHAR (20) NOT NULL 
 ); 
 
 
-DROP TABLE IF EXISTS healthEquipment;
+-- DROP TABLE IF EXISTS healthEquipment;
 
-CREATE TABLE healthEquipment (
-  equip_id SERIAL PRIMARY KEY, 
-  wheelChair BOOLEAN DEFAULT false, 
-  oxyge
+-- CREATE TABLE healthEquipment (
+--   equip_id SERIAL PRIMARY KEY, 
+  -- wheelChair BOOLEAN DEFAULT false, 
+  -- oxygenTank BOOLEAN DEFAULT false
