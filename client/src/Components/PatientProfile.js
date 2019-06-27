@@ -1,29 +1,35 @@
 import React, { Component } from 'react';
 import { Image, Container, Row, Col, ListGroup, ListGroupItem } from 'react-bootstrap';
 import Appointments from './Appointments.js';
+import NavigationBar from './NavigationBar';
 
 export default class PatientProfile extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            id: '',
+            id: '2',
             image: 'https://via.placeholder.com/150',
             name: 'Name',
             zip: 'zip code',
             biography: 'jfoidpasjfipjdsapifjdsapjfpdjsafopjdsioafjodipsajfiodjsaofjdoisajfopdsnaofinpdsianfipdsnafipndsia',
             dependencies: ['wheelchair', 'oxygen tank'],
-            appointments: ['appointment1', 'appointment2', 'appointment3', 'yolo']
+
+            appointments: ['appointment1', 'appointment2', 'appointment3', 'yolo'],
+
         }
     }
 
     componentDidMount() {
         //axios request to get user information
+        const id = this.props.location.state
+        console.log(id)
     }
 
     render() {
         return(
             <>
+            <NavigationBar />
             <Container>
                 <Row>
                     <Col>

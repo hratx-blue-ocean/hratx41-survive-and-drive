@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Image, Container, Row, Col, ListGroup, ListGroupItem } from 'react-bootstrap';
 import DriverSchedule from './DriverSchedule.js';
+import NavigationBar from './NavigationBar.js';
+
 
 export default class DriverProfile extends Component {
     constructor(props) {
@@ -19,11 +21,14 @@ export default class DriverProfile extends Component {
 
     componentDidMount() {
         //axios request to get user information
+        const id = this.props.location.state;
+        console.log(id);
     }
 
     render() {
         return(
             <>
+            <NavigationBar />
             <Container>
                 <Row>
                     <Col>

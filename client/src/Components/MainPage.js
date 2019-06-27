@@ -11,6 +11,7 @@ import AppointmentNavigation from './AppointmentNavigation.js';
 
 
 
+
 export default class MainPage extends Component {
     constructor(props) {
         super(props);
@@ -42,12 +43,14 @@ export default class MainPage extends Component {
         return (
             <>
 
+
             <UnloggedHeader signup={this.handleSignUp} login={this.handleLogin}/>
                 
 
 
             {this.state.isLogin &&  <Login signup={this.handleSignUp}/>}
             {this.state.isSignup && <Signup login={this.handleLogin}/>}
+
 
 
 

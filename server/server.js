@@ -3,11 +3,10 @@ const createError = require('http-errors');
 const express = require('express');
 const app = express();
 
+const path = require('path');
+const port = process.env.PORT || 8000;
 
-const routers = require('./routes/routers');
-
-const port = process.env.PORT || 8002;
-
+const routers = require('./routes/routes');
 
 
 // open up CORS 
@@ -22,10 +21,22 @@ app.use((_, res, next) => {
 app.use(express.static('../client/public/'));
 
 
-
+//Express routes using routers -- Crew / Will
 app.use('/api/users/survivors/', routers.survivors);
 app.use('/api/users/drivers/', routers.drivers);
 app.use('/api/appointments/', routers.appointments);
+
+
+//React routing -- Brent
+app.get('/*', function(req, res) {
+    res.sendFile(path.join(__dirname, '../client/public/index.html'), function(err) {
+      if (err) {
+        res.status(500).send(err)
+      }
+    })
+  })
+
+
 
 
 
