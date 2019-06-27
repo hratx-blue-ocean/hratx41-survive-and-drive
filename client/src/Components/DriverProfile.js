@@ -22,7 +22,7 @@ export default class DriverProfile extends Component {
     componentDidMount() {
         //axios request to get user information
         const id = this.props.location.state;
-        console.log(id);
+        // console.log(id);
     }
 
     render() {

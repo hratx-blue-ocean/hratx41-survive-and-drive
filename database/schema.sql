@@ -1,6 +1,19 @@
+-- psql -U brent -d uplift -a -f database/schema.sql
+--^^^from root folder of survive/drive
 
-
+DROP TABLE IF EXISTS appointment;
 DROP TABLE IF EXISTS survivor;
+DROP TABLE IF EXISTS driver;
+DROP TABLE IF EXISTS healthEquipment;
+DROP TABLE IF EXISTS vehicle;
+
+CREATE TABLE healthEquipment (
+  equip_id SERIAL PRIMARY KEY, 
+  wheelChair BOOLEAN DEFAULT false, 
+  oxygen BOOLEAN DEFAULT false
+);
+
+
 
 CREATE TABLE survivor (
   survivor_id SERIAL PRIMARY KEY,
@@ -17,7 +30,15 @@ CREATE TABLE survivor (
   healthEquipmentID INTEGER REFERENCES healthEquipment(equip_id) DEFAULT NULL 
 );
 
-DROP TABLE IF EXISTS driver;
+
+
+CREATE TABLE vehicle ( 
+  vehicleID SERIAL PRIMARY KEY, 
+  truck BOOLEAN NOT NULL, 
+  van BOOLEAN NOT NULL 
+); 
+
+
 
 CREATE TABLE driver (
   driver_id SERIAL PRIMARY KEY,
@@ -34,15 +55,7 @@ CREATE TABLE driver (
   vehicleTypes INTEGER REFERENCES vehicle(vehicleID) 
 );
 
-DROP TABLE IF EXISTS vehicle; 
 
-CREATE TABLE vehicle ( 
-  vehicleID SERIAL PRIMARY KEY, 
-  truck BOOLEAN NOT NULL, 
-  van BOOLEAN NOT NULL 
-); 
-
-DROP TABLE IF EXISTS appointment;
 
 CREATE TABLE appointment (
   appointment_id SERIAL PRIMARY KEY, 
@@ -62,10 +75,3 @@ CREATE TABLE appointment (
 ); 
 
 
-DROP TABLE IF EXISTS healthEquipment;
-
-CREATE TABLE healthEquipment (
-  equip_id SERIAL PRIMARY KEY, 
-  wheelChair BOOLEAN DEFAULT false, 
-  oxygen BOOLEAN DEFAULT false
-);

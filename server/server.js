@@ -6,7 +6,7 @@ const app = express();
 const path = require('path');
 const port = process.env.PORT || 8000;
 
-const routers = require('./routes/routes');
+const routers = require('./routes/routers');
 
 
 // open up CORS 
@@ -18,7 +18,7 @@ app.use((_, res, next) => {
 
 // app.use(logger('dev'));
 
-app.use(express.static('../client/public/'));
+app.use(express.static('./client/public'));
 
 
 //Express routes using routers -- Crew / Will

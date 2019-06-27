@@ -2,13 +2,14 @@ import React, { Component } from 'react';
 import { Image, Container, Row, Col, ListGroup, ListGroupItem } from 'react-bootstrap';
 import Appointments from './Appointments.js';
 import NavigationBar from './NavigationBar';
+import axios from 'axios';
 
 export default class PatientProfile extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            id: '2',
+            id: '1',
             image: 'https://via.placeholder.com/150',
             name: 'Name',
             zip: 'zip code',
@@ -21,10 +22,20 @@ export default class PatientProfile extends Component {
     }
 
     componentDidMount() {
-        //axios request to get user information
-        const id = this.props.location.state
-        console.log(id)
+        // //axios request to get user information
+        // const id = this.props.location.state
+        // // console.log(id)
+        axios.get(`/api/users/survivors/${this.state.id}`)
+        .then((response) => {
+            console.log(response.data)
+            this.setState({
+                name: response.data.firstname + ' ' + response.data.lastname,
+                image: response.data.photolink,
+            });
+        })
+        .catch((error) => console.log(error));
     }
+        
 
     render() {
         return(
