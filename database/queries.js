@@ -88,14 +88,13 @@ const deleteAppointment = (appointmentId, cb) => {
 } 
 
 const addDriver = (driverInfo, cb) => { 
-  client.query(`INSERT INTO driver ( 
-    firstName, lastName, email, phoneNumber, addressLineOne, addressLineTwo, addressZipCode, 
-    addressState, photoLink, vehicleTypes) VALUES ( 
-      ${driverInfo.firstName}, ${driverInfo.lastName}, ${driverInfo.email}, 
-      ${driverInfo.phoneNumber}, ${driverInfo.addressLineOne}, ${driverInfo.addressLineTwo}, 
-      ${driverInfo.addressZipCode}, ${driverInfo.addressState}, ${driverInfo.photoLink}, 
-      ${driverInfo.vehicleTypes})`, 
-      (err, res) => {
+  let query = `INSERT INTO driver ( 
+    firstName, lastName, email, phoneNumber, addressLineOne, addressLineTwo, addressZipCode, addressState, 
+    addressCity, photoLink) VALUES ( 
+    '${driverInfo.firstName}',  '${driverInfo.lastName}', '${driverInfo.email}', 
+    '${driverInfo.phoneNumber}', '${driverInfo.addressLineOne}', '${driverInfo.addressLineTwo}', 
+    ${driverInfo.addressZipCode}, '${driverInfo.addressState}', '${driverInfo.addressCity}', '${driverInfo.photoLink}' )`;
+  client.query(query, (err, res) => {
     if (err) {
       cb(err, null);
     } else {
@@ -145,14 +144,16 @@ const deleteDriver = (driverId, cb) => {
   }); 
 } 
 
+//REMOVED THE HANDICAP ACCECCIBLE BOOLEANS BECAUSE IT WAS BREAKING THE QUERY.  ADD BACK LATER.
 const addSurvivor = (survivorProfile, cb) => { 
-  client.query(`INSERT INTO survivor ( 
-    firstName,  lastName, email, phoneNumber, addressLineOne, addressLineTwo, addressZipCode, addressState, 
-    photoLink, healthEquipmentID) VALUES ( 
-      '${survivorProfile.firstName}',  '${survivorProfile.lastName}', '${survivorProfile.email}', 
-      '${survivorProfile.phoneNumber}', '${survivorProfile.addressLineOne}', '${survivorProfile.addressLineTwo}', 
-      ${survivorProfile.addressZipCode}, '${survivorProfile.addressState}', '${survivorProfile.photoLink}', 
-      ${survivorProfile.healthEquipmentID} );`, (err, results) => { 
+  let query = `INSERT INTO survivor ( 
+    firstName, lastName, email, phoneNumber, addressLineOne, addressLineTwo, addressZipCode, addressState, 
+    addressCity, photoLink) VALUES ( 
+    '${survivorProfile.firstName}',  '${survivorProfile.lastName}', '${survivorProfile.email}', 
+    '${survivorProfile.phoneNumber}', '${survivorProfile.addressLineOne}', '${survivorProfile.addressLineTwo}', 
+    ${survivorProfile.addressZipCode}, '${survivorProfile.addressState}', '${survivorProfile.addressCity}', '${survivorProfile.photoLink}' )`;
+
+  client.query(query, (err, results) => { 
         if (err) { 
           console.log(err)
           cb(err, null) 
@@ -166,34 +167,33 @@ const addSurvivor = (survivorProfile, cb) => {
 const getAllSurvivors = (cb) => { 
   client.query(`SELECT * FROM survivor`, (err, allSurvivors) => { 
     if (err) { 
-      console.log(err);
       cb(err,null) 
     } else { 
-      cb(null, allSurvivors)
+      cb(null, allSurvivors);
     }
   }); 
 }
 
 const getSurvivor = (survivorId, cb) => { 
   client.query(`SELECT * FROM survivor WHERE survivor_id = ${survivorId}`, 
-  (err, survivorProfile) => { 
+  (err, driverInfo) => { 
     if (err) { 
       console.log(err);
       cb(err, null) 
     } else { 
-      cb(null, survivorProfile)
+      cb(null, driverInfo)
     }
   }); 
 }
 
-const updateSurvivor = (survivorId, survivorProfile, cb) => { 
+const updateSurvivor = (survivorId, driverInfo, cb) => { 
   client.query(`UPDATE survivor SET ( 
     firstName,  lastName, email, phoneNumber, addressLineOne, addressLineTwo, addressZipCode, addressState, 
     photoLink, healthEquipmentID) = ( 
-      ${survivorProfile.firstName},  ${survivorProfile.lastName}, ${survivorProfile.email}, 
-      ${survivorProfile.phoneNumber}, ${survivorProfile.addressLineOne}, ${survivorProfile.addressLineTwo}, 
-      ${survivorProfile.addressZipCode}, ${survivorProfile.addressState}, ${survivorProfile.photoLink}, 
-      ${survivorProfile.healthEquipmentID} ) 
+      ${driverInfo.firstName},  ${driverInfo.lastName}, ${driverInfo.email}, 
+      ${driverInfo.phoneNumber}, ${driverInfo.addressLineOne}, ${driverInfo.addressLineTwo}, 
+      ${driverInfo.addressZipCode}, ${driverInfo.addressState}, ${driverInfo.photoLink}, 
+      ${driverInfo.healthEquipmentID} ) 
       WHERE survivor_id = ${survivorId}`, (err, updatedSurvivor) => { 
         if (err) { 
           console.log(err);
