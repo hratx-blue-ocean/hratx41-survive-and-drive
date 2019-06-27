@@ -22,8 +22,11 @@ app.use((_, res, next) => {
 app.use(express.static('../client/public/'));
 
 
-/* Currently we are only importing SURVIVORS ROUTER to test it and try to get it running */
+
 app.use('/api/users/survivors/', routers.survivors);
+app.use('/api/users/drivers/', routers.drivers);
+app.use('/api/appointments/', routers.appointments);
+
 
 
 

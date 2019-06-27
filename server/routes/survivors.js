@@ -4,7 +4,7 @@ const db = require('../../database/queries.js');
 const bodyParser = require('body-parser')
 
 
-router.use(express.json());
+router.use(express.json()); 
 
 router.post('/', (req, res) => {
     db.addSurvivor(req.body, (err, items) => {
@@ -18,8 +18,9 @@ router.post('/', (req, res) => {
     })
 })
 
-router.get('/', (req, res) => {
-    db.getSurvivor(req.body.survivorId, (err, items) => {
+router.get('/:id', (req, res) => {
+    const id = req.params.id
+    db.getSurvivor(id, (err, items) => {
         if (err) {
             console.log(`Error finding driver: ${req.body.survivorId}:`);
             res.status(401).send(err);
@@ -31,7 +32,7 @@ router.get('/', (req, res) => {
 });
 
 router.get('/all', (req, res) => {
-    db.getAllSurvivors(req.body, (err, items) => {
+    db.getAllSurvivors( (err, items) => {
         if (err) {
             console.log(`Error finding all survivors`);
             res.status(401).send(err);
