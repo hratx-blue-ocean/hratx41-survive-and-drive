@@ -3,6 +3,7 @@ import { Row, Col, FormControl, Button, Modal, InputGroup, Container, Image } fr
 import Appointments from './Appointments.js';
 import NavigationBar from './NavigationBar.js';
 
+
 export default class AppointmentNavigation extends Component {
     constructor(props) {
         super(props);
@@ -36,6 +37,7 @@ export default class AppointmentNavigation extends Component {
     render() {
         return (
             <>
+
             <NavigationBar />
             <Container style={{
                 marginTop: 40

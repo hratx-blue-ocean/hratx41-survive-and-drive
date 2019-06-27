@@ -2,14 +2,13 @@ import React, { Component } from 'react';
 import { Button, Jumbotron, Modal } from 'react-bootstrap';
 import Signup from './Signup.js';
 import Login from './Login.js';
-import Header from './Header.js';
+import UnloggedHeader from './UnloggedHeader.js';
 import PatientProfile from './PatientProfile.js';
 import DriverProfile from './DriverProfile.js'
 import CreateAppointment from './CreateAppointment.js';
 import Appointments from './Appointments.js';
 import AppointmentNavigation from './AppointmentNavigation.js';
 
-// import { BrowserRouter as Router, Route, Link } from "react-router-dom"
 
 
 
@@ -43,9 +42,20 @@ export default class MainPage extends Component {
     render() {
         return (
             <>
-            <Header signup={this.handleSignUp} login={this.handleLogin}/>
-            {this.state.isLogin && <Login signup={this.handleSignUp}/>}
-            {this.state.isSignup && <Signup login={this.handleLogin}/>} 
+
+
+            <UnloggedHeader signup={this.handleSignUp} login={this.handleLogin}/>
+                
+
+
+            {this.state.isLogin &&  <Login signup={this.handleSignUp}/>}
+            {this.state.isSignup && <Signup login={this.handleLogin}/>}
+
+
+
+
+
+
 
             </>
         )

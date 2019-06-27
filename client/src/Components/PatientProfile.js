@@ -14,7 +14,9 @@ export default class PatientProfile extends Component {
             zip: 'zip code',
             biography: 'jfoidpasjfipjdsapifjdsapjfpdjsafopjdsioafjodipsajfiodjsaofjdoisajfopdsnaofinpdsianfipdsnafipndsia',
             dependencies: ['wheelchair', 'oxygen tank'],
+
             appointments: ['appointment1', 'appointment2', 'appointment3', 'yolo'],
+
         }
     }
 
