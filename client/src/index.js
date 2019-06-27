@@ -8,6 +8,7 @@ import MainPage from './Components/MainPage.js';
 import PatientProfile from './Components/PatientProfile.js';
 import DriverProfile from './Components/DriverProfile.js';
 import AppointmentNavigation from './Components/AppointmentNavigation.js';
+import Signup from './Components/Signup.js';
 // import './index.css';
 
 
@@ -20,6 +21,7 @@ const routing = (
 
             <Route path="/driver" component={DriverProfile}/>
             <Route path="/appointments" component={AppointmentNavigation}/>
+            <Route path='/signup' component={Signup} />
         </div>
     </Router>
 )
