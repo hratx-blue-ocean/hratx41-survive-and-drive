@@ -5,16 +5,12 @@ require('dotenv').config();
 
 
 const addAppointment = (appointmentInfo, cb) => { 
-  client.query(`INSERT INTO appointment (
-    destination_driver, return_driver, survivor_id, locationName, 
-    addressLineOne, addressLineTwo, addressZipCode, addressState, 
-    appoinmentTime, pickupTime, date, toFromBoth) VALUES ( 
-      ${appointmentInfo.destination_driver}, ${appointmentInfo.return_driver}, ${appointmentInfo.survivor_id}, 
-      ${appointmentInfo.locationName}, ${appointmentInfo.addressLineOne}, ${appointmentInfo.addressLineTwo}, 
-      ${appointmentInfo.addressZipCode}, ${appointmentInfo.addressState}, ${appointmentInfo.appoinmentTime}, 
-      ${appointmentInfo.pickupTime}, ${appointmentInfo.date}, ${appointmentInfo.toFromBoth})`, 
+  console.log('here is your req.body', appointmentInfo);
+  client.query(`INSERT INTO appointment (survivor_id, locationName, 
+  addressLineOne, addressLineTwo, addressZipCode, addressState, appoinmentTime, pickupTime, date, toFromBoth) VALUES ('${appointmentInfo.survivor_id}', '${appointmentInfo.locationName}', '${appointmentInfo.addressLineOne}', '${appointmentInfo.addressLineTwo}', '${appointmentInfo.addressZipCode}', '${appointmentInfo.addressState}', '${appointmentInfo.appoinmentTime}', '${appointmentInfo.pickupTime}', '${appointmentInfo.date}', '${appointmentInfo.toFromBoth})'`, 
       (err, res) => {
       if(err) {
+        console.log('here is your error: ', err);
         cb(err, null);
       } else {
         cb(null, res);
@@ -24,6 +20,28 @@ const addAppointment = (appointmentInfo, cb) => {
 
 const getAppointment = (appointmentId, cb) => {
   client.query(`SELECT * FROM appointment WHERE appointment_id = ${appointmentId}`, 
+  (err, appointmentInfo) => {
+    if(err) {
+        cb(err, null);
+    } else {
+        cb(null, appointmentInfo);
+    }
+  })
+}
+
+const getAppointmentBySurvivor = (survivorId, cb) => {
+  client.query(`SELECT * FROM appointment WHERE survivor_id = ${survivorId}`, 
+  (err, appointmentInfo) => {
+    if(err) {
+        cb(err, null);
+    } else {
+        cb(null, appointmentInfo);
+    }
+  })
+}
+
+const getAppointmentByDriver = ()=> {
+  client.query(`SELECT * FROM appointment WHERE destination_driver || return_driver = ${driverId}`, 
   (err, appointmentInfo) => {
     if(err) {
         cb(err, null);
@@ -221,4 +239,4 @@ const deleteSurvivor = (survivorId, cb) => {
 module.exports = { addAppointment, getAppointment, updateAppointment, 
   updateAppointmentDestinationDriver, updateAppointmentReturnDriver, 
   deleteAppointment, addDriver, getAllSurvivors, getDriver, updateDriver, deleteDriver, 
-  addSurvivor, getSurvivor, updateSurvivor, deleteSurvivor }
+  addSurvivor, getSurvivor, updateSurvivor, deleteSurvivor, getAppointmentBySurvivor, getAppointmentByDriver }
