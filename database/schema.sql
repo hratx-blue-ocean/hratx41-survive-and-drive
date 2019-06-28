@@ -3,8 +3,15 @@
 
 DROP TABLE IF EXISTS appointment;
 DROP TABLE IF EXISTS survivor;
+DROP TABLE IF EXISTS vehicle; 
 DROP TABLE IF EXISTS driver;
-DROP TABLE IF EXISTS vehicle;
+
+
+CREATE TABLE vehicle ( 
+  vehicleID SERIAL PRIMARY KEY, 
+  truck BOOLEAN NOT NULL, 
+  van BOOLEAN NOT NULL 
+); 
 
 
 CREATE TABLE survivor (
@@ -23,16 +30,6 @@ CREATE TABLE survivor (
   oxygen BOOLEAN NOT NULL
 );
 
-
-
-CREATE TABLE vehicle ( 
-  vehicleID SERIAL PRIMARY KEY, 
-  truck BOOLEAN NOT NULL, 
-  van BOOLEAN NOT NULL 
-); 
-
-
-
 CREATE TABLE driver (
   driver_id SERIAL PRIMARY KEY,
   firstName VARCHAR(255) NOT NULL,
@@ -47,7 +44,6 @@ CREATE TABLE driver (
   photoLink VARCHAR(255), 
   vehicleTypes INTEGER REFERENCES vehicle(vehicleID) 
 );
-
 
 
 CREATE TABLE appointment (
@@ -99,4 +95,3 @@ INSERT INTO survivor (
     '1236541234', '119 Nueces St', 
     78701, 'TX', 'Austin', 'https://randomuser.me/api/portraits/thumb/men/3.jpg', 'TRUE', 'FALSE'
 );
-
