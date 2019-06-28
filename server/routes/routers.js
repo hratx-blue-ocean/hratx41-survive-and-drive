@@ -1,13 +1,9 @@
+/* eslint-disable no-console */
+//Note from Crew: I tried to get the boiler plate set up for this, but there may very well be some error
+
 const drivers = require('./drivers');
-const appointments = require('./appointments');
-const survivors = require('./survivors');
 
-
-module.exports = {
-    drivers,
-    appointments,
-    survivors
-}
+module.exports = drivers;
 
 
 
