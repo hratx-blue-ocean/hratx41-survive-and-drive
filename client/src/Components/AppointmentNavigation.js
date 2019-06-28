@@ -20,7 +20,7 @@ export default class AppointmentNavigation extends Component {
     }
 
     componentDidMount() {
-        //axios request to get all appointments within that zip code
+        
     }
 
     handleZipInput(e) {
