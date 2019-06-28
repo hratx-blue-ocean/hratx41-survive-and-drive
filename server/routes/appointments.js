@@ -1,6 +1,10 @@
 const express = require('express');
 const router = express.Router();
 const db = require('../../database/queries.js');
+const bodyParser = require('body-parser')
+
+
+router.use(express.json()); 
 
 router.use(express.json()); 
 
@@ -29,21 +33,6 @@ router.get('/', (req, res) => {
   });
 });
 
-  //get appointment by survivor ID
-  //Find a way to combine this with the appointment by driver ID on the server side
-router.get('/', (req, res) => {
-  let id = req.params.survivorId;
-  db.getAppointmentBySurvivor(req.body.survivor_id, (err, items) => {
-    if (err) {
-      console.log(`Error finding appointments for survivor: ${req.body.survivor_id}:`);
-      res.status(401).send(err);
-    } else {
-      console.log(`Success! Found appointments for survivor: ${req.body.survivor_id}.`);
-      res.status(201).send(items);
-    }
-  });
-});
-
   //get appointment by driver ID
 router.get('/:id', (req, res) => {
   db.getAppointmentByDriver(req.body.driver_id, (err, items) => {
@@ -54,8 +43,36 @@ router.get('/:id', (req, res) => {
       console.log(`Success! Found appointments for driver:  ${req.body.driver_id}.`);
       res.status(201).send(items);
     }
+
+
+  //get appointment by survivor id
+  router.get('/:id', (req, res) => {
+    const id = req.params.id
+    db.getAppointmentBySurvivor(id, (err, items) => {
+      if (err) {
+        console.log(`Error finding appointments for survivor: ${id}:`);
+        res.status(401).send(err);
+      } else {
+        console.log(`Success! Found appointments for survivor: ${id}.`);
+        res.status(201).send(items.rows);
+      }
+    });
+
   });
 });
+  
+  //get appointment by appointment id
+//   router.get('/', (req, res) => {
+//       db.getAppointment(req.body.appointmentId, (err, items) => {
+//           if (err) {
+//               console.log(`Error finding items w/ category ${req.body.appointmentId}:`);
+//               res.status(401).send(err);
+//           } else {
+//               console.log(`Success! Found results for ${req.body.appointmentId}.`);
+//               res.status(201).send(items);
+//           }
+//       });
+//   });
   
   //update appointment return driver
   router.put('/', (req, res) => {

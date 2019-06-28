@@ -18,7 +18,7 @@ app.use((_, res, next) => {
 
 // app.use(logger('dev'));
 
-app.use(express.static('../client/public/'));
+app.use(express.static('./client/public'));
 
 
 //Express routes using routers -- Crew / Will

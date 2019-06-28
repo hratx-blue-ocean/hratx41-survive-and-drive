@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Nav, NavDropdown, Button, ButtonToolbar, Col, Navbar, NavItem } from 'react-bootstrap';
+import { Nav, NavDropdown, Button, ButtonToolbar, Col, Navbar, Image, NavItem } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
 
@@ -15,12 +15,8 @@ export default class NavigationBar extends Component {
 
     render(){
         return(<>
-        <Navbar  className="m-2 p-1">
-            <Nav>
-                <Nav.Item className="pl-md">
-                    <h3>Uplift</h3>
-                </Nav.Item>
-            </Nav>
+        <Navbar  className="m-2 p-1" sticky="top" bg="light" variant="light">
+            <Navbar.Brand href="/"><Image src="./logo.png" width="150px"></Image></Navbar.Brand>
             <Nav variant="dark" fixed="top" className="ml-auto pr-md" activeKey="1">
                 <Nav.Item >
                     <ButtonToolbar>

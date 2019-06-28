@@ -5,9 +5,9 @@ require('dotenv').config();
 
 
 const addAppointment = (appointmentInfo, cb) => { 
-  console.log('here is your req.body', appointmentInfo);
   client.query(`INSERT INTO appointment (survivor_id, locationName, 
-  addressLineOne, addressLineTwo, addressZipCode, addressState, appoinmentTime, pickupTime, date, toFromBoth) VALUES ('${appointmentInfo.survivor_id}', '${appointmentInfo.locationName}', '${appointmentInfo.addressLineOne}', '${appointmentInfo.addressLineTwo}', '${appointmentInfo.addressZipCode}', '${appointmentInfo.addressState}', '${appointmentInfo.appoinmentTime}', '${appointmentInfo.pickupTime}', '${appointmentInfo.date}', '${appointmentInfo.toFromBoth})'`, 
+    addressLineOne, addressLineTwo, addressZipCode, addressCity, addressState, 
+    appoinmentTime, pickupTime, date, toFromBoth) VALUES (${appointmentInfo.survivor_id}, '${appointmentInfo.locationName}', '${appointmentInfo.addressLineOne}', '${appointmentInfo.addressLineTwo}', ${appointmentInfo.addressZipCode}, '${appointmentInfo.addressCity}', '${appointmentInfo.addressState}', '${appointmentInfo.appoinmentTime}', '${appointmentInfo.pickupTime}', '${appointmentInfo.date}', '${appointmentInfo.toFromBoth}')`, 
       (err, res) => {
       if(err) {
         console.log('here is your error: ', err);
@@ -17,6 +17,17 @@ const addAppointment = (appointmentInfo, cb) => {
       }
     })
 }
+
+const getAppointmentBySurvivor = (survivorId, cb) => {
+  client.query(`SELECT * FROM appointment WHERE survivor_id = ${survivorId}`, 
+  (err, appointmentInfo) => {
+    if(err) {
+        cb(err, null);
+    } else {
+        cb(null, appointmentInfo);
+    }
+  })
+} 
 
 const getAppointment = (appointmentId, cb) => {
   client.query(`SELECT * FROM appointment WHERE appointment_id = ${appointmentId}`, 
