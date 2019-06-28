@@ -9,6 +9,8 @@ export default class Signup extends Component {
         this.state = {
             firstName: '',
             lastName: '',
+            wheelChair: true,
+            oxygen: true,
             addressLineOne: '',
             addressLineTwo: '',
             addressCity: '',

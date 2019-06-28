@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Image, Container, Row, Col, ListGroup, Nav, Navbar, ListGroupItem } from 'react-bootstrap';
 import DriverSchedule from './DriverSchedule.js';
 import NavigationBar from './NavigationBar.js';
-
+import axios from 'axios';
 
 export default class DriverProfile extends Component {
     constructor(props) {
@@ -23,12 +23,19 @@ export default class DriverProfile extends Component {
     }
 
     componentDidMount() {
-        axios.get(`/api/users/drivers/${this.state.id}`)
+        const driverInfo = axios.get(`/api/users/drivers/${this.state.id}`)
+        const appointmentInfo = axios.get(`/api/appointments/${this.state.id}`)
+
+        Promise.all([driverInfo, appointmentInfo])
+
         .then((response) => {
-            console.log(response.data)
+            console.log(response)
             this.setState({
-                name: response.data.firstname + ' ' + response.data.lastname,
-                image: response.data.photolink,
+                firstName: response[0].data.firstname,
+                lastName: response[0].data.lastname,
+                image: response[0].data.photolink,
+
+                schedule: response[1].data
             });
         })
         .catch((error) => console.log(error));

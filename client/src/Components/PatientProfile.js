@@ -9,15 +9,8 @@ export default class PatientProfile extends Component {
         super(props);
 
         this.state = {
-<<<<<<< HEAD
-            id: '1',
-            image: 'https://via.placeholder.com/150',
-            name: 'Name',
-            zip: 'zip code',
-            biography: 'jfoidpasjfipjdsapifjdsapjfpdjsafopjdsioafjodipsajfiodjsaofjdoisajfopdsnaofinpdsianfipdsnafipndsia',
-=======
           
-            id: '2',
+            id: '1',
             image: 'https://i.pravatar.cc/150?img=5',
             firstName: 'Sara',
             lastName: 'Wozniac',
@@ -26,7 +19,6 @@ export default class PatientProfile extends Component {
             state: 'TX',
             biography: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
 
->>>>>>> c19f53dd302663d90a90e23a2fd649f0e1ca285b
             dependencies: ['wheelchair', 'oxygen tank'],
 
             appointments: ['appointment1', 'appointment2', 'appointment3', 'yolo'],
@@ -35,10 +27,6 @@ export default class PatientProfile extends Component {
     }
 
     componentDidMount() {
-<<<<<<< HEAD
-=======
-
->>>>>>> c19f53dd302663d90a90e23a2fd649f0e1ca285b
         // //axios request to get user information
         // const id = this.props.location.state
         // // console.log(id)
@@ -47,13 +35,13 @@ export default class PatientProfile extends Component {
         
         Promise.all([profileInfo, appointmentInfo])
         .then((response) => {
-            console.log(response[1]);
             this.setState({
-                name: response[0].data.firstname + ' ' + response[0].data.lastname,
+                firstName: response[0].data.firstname,
+                lastName: response[0].data.lastname,
                 image: response[0].data.photolink,
                 zip: response[0].data.addresszipcode,
                 
-                // appointments: response[1].data
+                appointments: response[1].data
 
             });
         })
@@ -104,6 +92,3 @@ export default class PatientProfile extends Component {
     }
 }
                     
-{/* <Row>
-                    
-                </Row> */}   
