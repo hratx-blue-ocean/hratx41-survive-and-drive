@@ -1,6 +1,5 @@
 /* eslint-disable no-console */
 const { Client } = require('pg');
-// const {URL_STRING} = require('./asdf');
 
 
 //Client will need to have an object argument when working in deployment.  Need to create a local postgress database for now.
