@@ -25,15 +25,21 @@ export default class PatientProfile extends Component {
         // //axios request to get user information
         // const id = this.props.location.state
         // // console.log(id)
-        axios.get(`/api/users/survivors/${this.state.id}`)
+        const profileInfo = axios.get(`/api/users/survivors/${this.state.id}`);
+        const appointmentInfo = axios.get(`/api/appointments/${this.state.id}`);
+        
+        Promise.all([profileInfo, appointmentInfo])
         .then((response) => {
-            console.log(response.data)
+            console.log(response[1]);
             this.setState({
-                name: response.data.firstname + ' ' + response.data.lastname,
-                image: response.data.photolink,
+                name: response[0].data.firstname + ' ' + response[0].data.lastname,
+                image: response[0].data.photolink,
+                zip: response[0].data.addresszipcode,
+                
+                // appointments: response[1].data
+
             });
         })
-        .catch((error) => console.log(error));
     }
         
 

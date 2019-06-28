@@ -7,7 +7,6 @@ const bodyParser = require('body-parser')
 router.use(express.json()); 
 
 router.post('/', (req, res) => {
-    console.log(req.body)
     db.addSurvivor(req.body, (err, items) => {
         if(err) {
           console.log('There was an error invoking app.post to add a survivor');
@@ -23,10 +22,10 @@ router.get('/:id', (req, res) => {
     const id = req.params.id
     db.getSurvivor(id, (err, items) => {
         if (err) {
-            console.log(`Error finding driver: ${req.body.survivorId}:`);
+            console.log(`Error finding survivor: ${id}:`);
             res.status(401).send(err);
         } else {
-            console.log(`Success! Found driver: ${req.body.survivorId}.`);
+            console.log(`Success! Found survivor: ${id}.`);
             res.status(201).send(items.rows[0]);
         }
     });
