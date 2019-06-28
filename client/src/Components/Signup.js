@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Button, Form , Row, Col, Modal } from 'react-bootstrap';
+import axios from 'axios';
 
 export default class Signup extends Component {
     constructor(props) {
@@ -8,14 +9,14 @@ export default class Signup extends Component {
         this.state = {
             firstName: '',
             lastName: '',
-            address1: '',
-            address2: '',
-            city: '',
-            state: '',
-            zip: '',
+            addressLineOne: '',
+            addressLineTwo: '',
+            addressCity: '',
+            addressState: '',
+            addressZipCode: '',
             email: '',
-            phone: '',
-            type: '',
+            phoneNumber: '',
+            type: 'survivor',
             password: ''
         }
 
@@ -32,10 +33,16 @@ export default class Signup extends Component {
         });
     }
 
-    handleSubmit() {
-        //axios post for state info
-        
+    handleSubmit(e) {
+        // e.preventDefault();
+        const lowercase = this.state.type.toLowerCase();
+        console.log(lowercase)
+        axios.post(`/api/users/${lowercase}s`, this.state)
+        .then(response => console.log(response))
+        .catch(error => console.log(error))
     }
+
+
 
     render() {
         return (
@@ -59,27 +66,35 @@ export default class Signup extends Component {
                             <Form.Label>Address</Form.Label>
                                 <Row>
                                     <Col>
-                                        <Form.Control name='address1' className="m-1" onChange={this.handleChange} placeholder='Address Line 1' />
+                                        <Form.Control name='addressLineOne' className="m-1" onChange={this.handleChange} placeholder='Address Line 1' />
                                     </Col>
                                     <Col>
-                                        <Form.Control name='address2' className="m-1" onChange={this.handleChange} placeholder='Address Line 2' />
+                                        <Form.Control name='addressLineTwo' className="m-1" onChange={this.handleChange} placeholder='Address Line 2' />
                                     </Col>
                                 </Row>    
                                 <Row>
                                     <Col>
-                                        <Form.Control name='city' className="m-1" onChange={this.handleChange} placeholder='City' />
+                                        <Form.Control name='addressCity' className="m-1" onChange={this.handleChange} placeholder='City' />
                                     </Col>
                                     <Col>
-                                        <Form.Control name='state' className="m-1" onChange={this.handleChange} placeholder='State' />
+                                        <Form.Control name='addressState' className="m-1" onChange={this.handleChange} placeholder='State' />
                                     </Col>
                                     <Col>
-                                        <Form.Control name='zip' className="m-1" onChange={this.handleChange} placeholder='Zip Code' />
+                                        <Form.Control name='addressZipCode' className="m-1" onChange={this.handleChange} placeholder='Zip Code' />
+                                    </Col>
+                                </Row>
+                        </Form.Group>
+                        <Form.Group>
+                            <Form.Label>Phone Number</Form.Label>
+                                <Row>
+                                    <Col>
+                                        <Form.Control name='phoneNumber' className="m-1" onChange={this.handleChange} placeholder='Phone Number' />
                                     </Col>
                                 </Row>
                         </Form.Group>
                         <Form.Group>
                             <Form.Label>Type</Form.Label>
-                                <Form.Control className="m-1" as='select'>
+                                <Form.Control className="m-1" as='select' name='type' onChange={this.handleChange}>
                                     <option>Survivor</option>
                                     <option>Driver</option>
                                 </Form.Control>
@@ -100,7 +115,7 @@ export default class Signup extends Component {
                     </Form>
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button onSubmit={this.handleSubmit}>Submit</Button>
+                    <Button onClick={this.handleSubmit}>Submit</Button>
                 </Modal.Footer>
             </Modal.Dialog>
             </>
