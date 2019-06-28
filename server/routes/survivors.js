@@ -22,11 +22,11 @@ router.get('/:id', (req, res) => {
     const id = req.params.id
     db.getSurvivor(id, (err, items) => {
         if (err) {
-            console.log(`Error finding driver: ${req.body.survivorId}:`);
+            console.log(`Error finding survivor: ${id}:`);
             res.status(401).send(err);
         } else {
-            console.log(`Success! Found driver: ${req.body.survivorId}.`);
-            res.status(201).send(items);
+            console.log(`Success! Found survivor: ${id}.`);
+            res.status(201).send(items.rows[0]);
         }
     });
 });
@@ -37,6 +37,7 @@ router.get('/all', (req, res) => {
             console.log(`Error finding all survivors`);
             res.status(401).send(err);
         } else {
+
             console.log(`Success! Found all survivors.`);
             res.status(201).send(items);
         }

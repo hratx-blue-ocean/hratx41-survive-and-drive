@@ -23,9 +23,15 @@ export default class DriverProfile extends Component {
     }
 
     componentDidMount() {
-        //axios request to get user information
-        const id = this.props.location.state;
-        console.log(id);
+        axios.get(`/api/users/drivers/${this.state.id}`)
+        .then((response) => {
+            console.log(response.data)
+            this.setState({
+                name: response.data.firstname + ' ' + response.data.lastname,
+                image: response.data.photolink,
+            });
+        })
+        .catch((error) => console.log(error));
     }
 
     render() {

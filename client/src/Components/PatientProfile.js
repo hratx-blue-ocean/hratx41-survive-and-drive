@@ -2,12 +2,14 @@ import React, { Component } from 'react';
 import { Image, Container, Nav, Navbar, Row, Col, ListGroup, ListGroupItem } from 'react-bootstrap';
 import Appointments from './Appointments.js';
 import NavigationBar from './NavigationBar';
+import axios from 'axios';
 
 export default class PatientProfile extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
+          
             id: '2',
             image: 'https://i.pravatar.cc/150?img=5',
             firstName: 'Sara',
@@ -16,6 +18,7 @@ export default class PatientProfile extends Component {
             city: 'Austin', 
             state: 'TX',
             biography: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+
             dependencies: ['wheelchair', 'oxygen tank'],
 
             appointments: ['appointment1', 'appointment2', 'appointment3', 'yolo'],
@@ -24,10 +27,27 @@ export default class PatientProfile extends Component {
     }
 
     componentDidMount() {
-        //axios request to get user information
-        const id = this.props.location.state;
-        console.log(id);
+
+        // //axios request to get user information
+        // const id = this.props.location.state
+        // // console.log(id)
+        const profileInfo = axios.get(`/api/users/survivors/${this.state.id}`);
+        const appointmentInfo = axios.get(`/api/appointments/${this.state.id}`);
+        
+        Promise.all([profileInfo, appointmentInfo])
+        .then((response) => {
+            console.log(response[1]);
+            this.setState({
+                name: response[0].data.firstname + ' ' + response[0].data.lastname,
+                image: response[0].data.photolink,
+                zip: response[0].data.addresszipcode,
+                
+                // appointments: response[1].data
+
+            });
+        })
     }
+        
 
     render() {
         return(
