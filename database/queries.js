@@ -10,6 +10,7 @@ const addAppointment = (appointmentInfo, cb) => {
     appoinmentTime, pickupTime, date, toFromBoth) VALUES (${appointmentInfo.survivor_id}, '${appointmentInfo.locationName}', '${appointmentInfo.addressLineOne}', '${appointmentInfo.addressLineTwo}', ${appointmentInfo.addressZipCode}, '${appointmentInfo.addressCity}', '${appointmentInfo.addressState}', '${appointmentInfo.appoinmentTime}', '${appointmentInfo.pickupTime}', '${appointmentInfo.date}', '${appointmentInfo.toFromBoth}')`, 
       (err, res) => {
       if(err) {
+        console.log('here is your error: ', err);
         cb(err, null);
       } else {
         cb(null, res);
@@ -30,6 +31,28 @@ const getAppointmentBySurvivor = (survivorId, cb) => {
 
 const getAppointment = (appointmentId, cb) => {
   client.query(`SELECT * FROM appointment WHERE appointment_id = ${appointmentId}`, 
+  (err, appointmentInfo) => {
+    if(err) {
+        cb(err, null);
+    } else {
+        cb(null, appointmentInfo);
+    }
+  })
+}
+
+const getAppointmentBySurvivor = (survivorId, cb) => {
+  client.query(`SELECT * FROM appointment WHERE survivor_id = ${survivorId}`, 
+  (err, appointmentInfo) => {
+    if(err) {
+        cb(err, null);
+    } else {
+        cb(null, appointmentInfo);
+    }
+  })
+}
+
+const getAppointmentByDriver = ()=> {
+  client.query(`SELECT * FROM appointment WHERE destination_driver || return_driver = ${driverId}`, 
   (err, appointmentInfo) => {
     if(err) {
         cb(err, null);
@@ -227,4 +250,4 @@ const deleteSurvivor = (survivorId, cb) => {
 module.exports = { addAppointment, getAppointment, updateAppointment, 
   updateAppointmentDestinationDriver, updateAppointmentReturnDriver, 
   deleteAppointment, addDriver, getAllSurvivors, getDriver, updateDriver, deleteDriver, 
-  addSurvivor, getSurvivor, updateSurvivor, deleteSurvivor, getAppointmentBySurvivor }
+  addSurvivor, getSurvivor, updateSurvivor, deleteSurvivor, getAppointmentBySurvivor, getAppointmentByDriver }
