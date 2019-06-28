@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Form, Row, Col, Button, Modal, } from 'react-bootstrap';
+import UnloggedHeader from './UnloggedHeader.js';
 import axios from 'axios';
 
 export default class Login extends Component {
@@ -14,6 +15,12 @@ export default class Login extends Component {
         }
 
         this.handleClick = this.handleClick.bind(this);
+        this.componentDidUpdate = this.componentDidUpdate.bind(this);
+    }
+
+    componentDidUpdate() {
+        const lowercase = this.state.type.toLowerCase();
+        <Link to={{pathname: `/${lowercase}`, state: {id: this.state.id, type: this.state.type}}}></Link>
     }
 
     handleClick() {
@@ -25,7 +32,10 @@ export default class Login extends Component {
                 currentUser: response.data.row[0][`${this.state.type}_id`]
             });
         })
+        this.componentDidUpdate();
     }
+
+
 
     handleChange(e) {
         e.preventDefault();
@@ -37,6 +47,7 @@ export default class Login extends Component {
     render() {
         return (
             <>
+            <UnloggedHeader />
             <Modal.Dialog>
                 <Modal.Header><b>Login</b></Modal.Header>
                 <Modal.Body>

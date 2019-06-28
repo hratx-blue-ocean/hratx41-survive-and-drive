@@ -18,8 +18,8 @@ import Login from './Components/Login';
 const routing = (
     <Router >
         <div>
-            <Route exact path='/' component={MainPage} />
-            <Route path='/patient' render={(props) => <PatientProfile {...props} />}/>
+            <Route exact path='/' component={Signup} />
+            <Route path='/survivors' render={(props) => <PatientProfile {...props} />}/>
             <Route path='/createapp' render={(props) => <CreateAppointment {...props}/>}/>
             <Route path='/login' render={(props) => <Login {...props}/>}/>
 

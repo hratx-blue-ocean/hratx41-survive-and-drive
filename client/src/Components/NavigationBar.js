@@ -23,7 +23,7 @@ export default class NavigationBar extends Component {
                         
                         <Link to={{pathname: "/appointments", state: {id: this.state.id}}}><Button variant="outline-dark" className="m-2">Appointment List</Button></Link>
                         
-                        <Link to={{pathname: "/patient", state: {id: this.state.id}}}><Button variant="outline-dark" className="m-2">My Profile</Button></Link>
+                        <Link to={{pathname: "/survivors", state: {id: this.state.id}}}><Button variant="outline-dark" className="m-2">My Profile</Button></Link>
                         
                         
                         

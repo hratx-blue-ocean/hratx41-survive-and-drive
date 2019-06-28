@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Nav, Button, ButtonToolbar, Navbar } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
 
 export default class UnloggedHeader extends Component {
@@ -22,8 +23,8 @@ export default class UnloggedHeader extends Component {
             <Nav variant="dark" fixed="top" className="ml-auto pr-md" activeKey="1">
                 <Nav.Item >
                     <ButtonToolbar>
-                        <Button variant="outline-dark" className="m-2" onClick={this.props.login}>Login</Button>
-                        <Button variant="outline-dark" className="m-2" onClick={this.props.signup}>Signup</Button>
+                        <Link to='/login'><Button variant="outline-dark" className="m-2" onClick={this.props.login}>Login</Button></Link>
+                        <Link to='/signup'><Button variant="outline-dark" className="m-2" onClick={this.props.signup}>Signup</Button></Link>
                     </ButtonToolbar>
                 </Nav.Item>
             </Nav>
