@@ -8,6 +8,8 @@ import DriverProfile from './DriverProfile.js'
 import CreateAppointment from './CreateAppointment.js';
 import Appointments from './Appointments.js';
 import AppointmentNavigation from './AppointmentNavigation.js';
+import Axios from 'axios';
+
 
 
 
@@ -42,18 +44,11 @@ export default class MainPage extends Component {
         return (
             <>
 
-            <UnloggedHeader signup={this.handleSignUp} login={this.handleLogin}/>
-                
 
+            <UnloggedHeader signup={this.handleSignUp} login={this.handleLogin}/>
 
             {this.state.isLogin &&  <Login signup={this.handleSignUp}/>}
             {this.state.isSignup && <Signup login={this.handleLogin}/>}
-
-
-
-
-
-
             </>
         )
     }

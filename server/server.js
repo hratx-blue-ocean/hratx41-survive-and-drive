@@ -2,11 +2,11 @@ const createError = require('http-errors');
 // const logger = require('morgan');
 const express = require('express');
 const app = express();
+
+const path = require('path');
+const port = process.env.PORT || 8000;
+
 const routers = require('./routes/routers');
-
-const port = process.env.PORT || 8002;
-
-
 
 
 // open up CORS 
@@ -18,9 +18,26 @@ app.use((_, res, next) => {
 
 // app.use(logger('dev'));
 
-app.use(express.static('../client/public/'));
+app.use(express.static('./client/public'));
 
+
+//Express routes using routers -- Crew / Will
 app.use('/api/users/survivors/', routers.survivors);
+app.use('/api/users/drivers/', routers.drivers);
+app.use('/api/appointments/', routers.appointments);
+
+
+//React routing -- Brent
+app.get('/*', function(req, res) {
+    res.sendFile(path.join(__dirname, '../client/public/index.html'), function(err) {
+      if (err) {
+        res.status(500).send(err)
+      }
+    })
+  })
+
+
+
 
 app.use('api/users/drivers', routers.drivers);
 

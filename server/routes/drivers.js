@@ -1,6 +1,9 @@
-const router = require('express').Router();
+const express = require('express');
+const router = express.Router();
 const db = require('../../database/queries.js');
 
+
+router.use(express.json());
 //add driver
 router.post('/', (req, res) => {
     db.addDriver(req.body, (err, items) => {
@@ -15,8 +18,9 @@ router.post('/', (req, res) => {
 })
 
 //get driver
-router.get('/', (req, res) => {
-    db.getDriver(req.body.driverId, (err, items) => {
+router.get('/:id', (req, res) => {
+    const id = req.params.id;
+    db.getDriver(id, (err, items) => {
         if (err) {
             console.log(`Error finding driver: ${req.body.driverId}:`);
             res.status(401).send(err);

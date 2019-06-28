@@ -5,16 +5,12 @@ require('dotenv').config();
 
 
 const addAppointment = (appointmentInfo, cb) => { 
-  client.query(`INSERT INTO appointment (
-    destination_driver, return_driver, survivor_id, locationName, 
-    addressLineOne, addressLineTwo, addressZipCode, addressState, 
-    appoinmentTime, pickupTime, date, toFromBoth) VALUES ( 
-      ${appointmentInfo.destination_driver}, ${appointmentInfo.return_driver}, ${appointmentInfo.survivor_id}, 
-      ${appointmentInfo.locationName}, ${appointmentInfo.addressLineOne}, ${appointmentInfo.addressLineTwo}, 
-      ${appointmentInfo.addressZipCode}, ${appointmentInfo.addressState}, ${appointmentInfo.appoinmentTime}, 
-      ${appointmentInfo.pickupTime}, ${appointmentInfo.date}, ${appointmentInfo.toFromBoth})`, 
+  client.query(`INSERT INTO appointment (survivor_id, locationName, 
+    addressLineOne, addressLineTwo, addressZipCode, addressCity, addressState, 
+    appoinmentTime, pickupTime, date, toFromBoth) VALUES (${appointmentInfo.survivor_id}, '${appointmentInfo.locationName}', '${appointmentInfo.addressLineOne}', '${appointmentInfo.addressLineTwo}', ${appointmentInfo.addressZipCode}, '${appointmentInfo.addressCity}', '${appointmentInfo.addressState}', '${appointmentInfo.appoinmentTime}', '${appointmentInfo.pickupTime}', '${appointmentInfo.date}', '${appointmentInfo.toFromBoth}')`, 
       (err, res) => {
       if(err) {
+        console.log('here is your error: ', err);
         cb(err, null);
       } else {
         cb(null, res);
@@ -22,8 +18,41 @@ const addAppointment = (appointmentInfo, cb) => {
     })
 }
 
+const getAppointmentBySurvivor = (survivorId, cb) => {
+  client.query(`SELECT * FROM appointment WHERE survivor_id = ${survivorId}`, 
+  (err, appointmentInfo) => {
+    if(err) {
+        cb(err, null);
+    } else {
+        cb(null, appointmentInfo);
+    }
+  })
+} 
+
 const getAppointment = (appointmentId, cb) => {
   client.query(`SELECT * FROM appointment WHERE appointment_id = ${appointmentId}`, 
+  (err, appointmentInfo) => {
+    if(err) {
+        cb(err, null);
+    } else {
+        cb(null, appointmentInfo);
+    }
+  })
+}
+
+const getAppointmentBySurvivor = (survivorId, cb) => {
+  client.query(`SELECT * FROM appointment WHERE survivor_id = ${survivorId}`, 
+  (err, appointmentInfo) => {
+    if(err) {
+        cb(err, null);
+    } else {
+        cb(null, appointmentInfo);
+    }
+  })
+}
+
+const getAppointmentByDriver = ()=> {
+  client.query(`SELECT * FROM appointment WHERE destination_driver || return_driver = ${driverId}`, 
   (err, appointmentInfo) => {
     if(err) {
         cb(err, null);
@@ -88,14 +117,13 @@ const deleteAppointment = (appointmentId, cb) => {
 } 
 
 const addDriver = (driverInfo, cb) => { 
-  client.query(`INSERT INTO driver ( 
-    firstName, lastName, email, phoneNumber, addressLineOne, addressLineTwo, addressZipCode, 
-    addressState, photoLink, vehicleTypes) VALUES ( 
-      ${driverInfo.firstName}, ${driverInfo.lastName}, ${driverInfo.email}, 
-      ${driverInfo.phoneNumber}, ${driverInfo.addressLineOne}, ${driverInfo.addressLineTwo}, 
-      ${driverInfo.addressZipCode}, ${driverInfo.addressState}, ${driverInfo.photoLink}, 
-      ${driverInfo.vehicleTypes})`, 
-      (err, res) => {
+  let query = `INSERT INTO driver ( 
+    firstName, lastName, email, phoneNumber, addressLineOne, addressLineTwo, addressZipCode, addressState, 
+    addressCity, photoLink) VALUES ( 
+    '${driverInfo.firstName}',  '${driverInfo.lastName}', '${driverInfo.email}', 
+    '${driverInfo.phoneNumber}', '${driverInfo.addressLineOne}', '${driverInfo.addressLineTwo}', 
+    ${driverInfo.addressZipCode}, '${driverInfo.addressState}', '${driverInfo.addressCity}', '${driverInfo.photoLink}' )`;
+  client.query(query, (err, res) => {
     if (err) {
       cb(err, null);
     } else {
@@ -145,16 +173,18 @@ const deleteDriver = (driverId, cb) => {
   }); 
 } 
 
+//REMOVED THE HANDICAP ACCECCIBLE BOOLEANS BECAUSE IT WAS BREAKING THE QUERY.  ADD BACK LATER.
 const addSurvivor = (survivorProfile, cb) => { 
-  client.query(`INSERT INTO survivor ( 
-    firstName,  lastName, email, phoneNumber, addressLineOne, addressLineTwo, addressZipCode, addressState, 
-    photoLink, healthEquipmentID) VALUES ( 
-      ${survivorProfile.firstName},  ${survivorProfile.lastName}, ${survivorProfile.email}, 
-      ${survivorProfile.phoneNumber}, ${survivorProfile.addressLineOne}, ${survivorProfile.addressLineTwo}, 
-      ${survivorProfile.addressZipCode}, ${survivorProfile.addressState}, ${survivorProfile.photoLink}, 
-      ${survivorProfile.healthEquipmentID} )`, (err, results) => { 
+  let query = `INSERT INTO survivor ( 
+    firstName, lastName, email, phoneNumber, addressLineOne, addressLineTwo, addressZipCode, addressState, 
+    addressCity, photoLink) VALUES ( 
+    '${survivorProfile.firstName}',  '${survivorProfile.lastName}', '${survivorProfile.email}', 
+    '${survivorProfile.phoneNumber}', '${survivorProfile.addressLineOne}', '${survivorProfile.addressLineTwo}', 
+    ${survivorProfile.addressZipCode}, '${survivorProfile.addressState}', '${survivorProfile.addressCity}', '${survivorProfile.photoLink}' )`;
+
+  client.query(query, (err, results) => { 
         if (err) { 
-          console.log(err) 
+          console.log(err)
           cb(err, null) 
         } else { 
           cb(null, results)
@@ -166,34 +196,33 @@ const addSurvivor = (survivorProfile, cb) => {
 const getAllSurvivors = (cb) => { 
   client.query(`SELECT * FROM survivor`, (err, allSurvivors) => { 
     if (err) { 
-      console.log(err);
       cb(err,null) 
     } else { 
-      cb(null, allSurvivors)
+      cb(null, allSurvivors);
     }
   }); 
 }
 
 const getSurvivor = (survivorId, cb) => { 
   client.query(`SELECT * FROM survivor WHERE survivor_id = ${survivorId}`, 
-  (err, survivorProfile) => { 
+  (err, driverInfo) => { 
     if (err) { 
       console.log(err);
       cb(err, null) 
     } else { 
-      cb(null, survivorProfile)
+      cb(null, driverInfo)
     }
   }); 
 }
 
-const updateSurvivor = (survivorId, survivorProfile, cb) => { 
+const updateSurvivor = (survivorId, driverInfo, cb) => { 
   client.query(`UPDATE survivor SET ( 
     firstName,  lastName, email, phoneNumber, addressLineOne, addressLineTwo, addressZipCode, addressState, 
     photoLink, healthEquipmentID) = ( 
-      ${survivorProfile.firstName},  ${survivorProfile.lastName}, ${survivorProfile.email}, 
-      ${survivorProfile.phoneNumber}, ${survivorProfile.addressLineOne}, ${survivorProfile.addressLineTwo}, 
-      ${survivorProfile.addressZipCode}, ${survivorProfile.addressState}, ${survivorProfile.photoLink}, 
-      ${survivorProfile.healthEquipmentID} ) 
+      ${driverInfo.firstName},  ${driverInfo.lastName}, ${driverInfo.email}, 
+      ${driverInfo.phoneNumber}, ${driverInfo.addressLineOne}, ${driverInfo.addressLineTwo}, 
+      ${driverInfo.addressZipCode}, ${driverInfo.addressState}, ${driverInfo.photoLink}, 
+      ${driverInfo.healthEquipmentID} ) 
       WHERE survivor_id = ${survivorId}`, (err, updatedSurvivor) => { 
         if (err) { 
           console.log(err);
@@ -213,10 +242,12 @@ const deleteSurvivor = (survivorId, cb) => {
     } else { 
       cb(null, `Survivor with ID: ${survivorId}, deleted`)
     }
-  }); 
+  });
 }
+
+
 
 module.exports = { addAppointment, getAppointment, updateAppointment, 
   updateAppointmentDestinationDriver, updateAppointmentReturnDriver, 
   deleteAppointment, addDriver, getAllSurvivors, getDriver, updateDriver, deleteDriver, 
-  addSurvivor, getSurvivor, updateSurvivor, deleteSurvivor }
+  addSurvivor, getSurvivor, updateSurvivor, deleteSurvivor, getAppointmentBySurvivor, getAppointmentByDriver }

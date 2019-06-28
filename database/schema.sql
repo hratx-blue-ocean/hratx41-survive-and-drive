@@ -1,11 +1,18 @@
+-- psql -U brent -d uplift -a -f database/schema.sql
+--^^^from root folder of survive/drive
 
-DROP DATABASE IF EXISTS surviveDrive;
-
-CREATE DATABASE surviveDrive;
-
-SELECT surviveDrive;
-
+DROP TABLE IF EXISTS appointment;
 DROP TABLE IF EXISTS survivor;
+DROP TABLE IF EXISTS vehicle; 
+DROP TABLE IF EXISTS driver;
+
+
+CREATE TABLE vehicle ( 
+  vehicleID SERIAL PRIMARY KEY, 
+  truck BOOLEAN NOT NULL, 
+  van BOOLEAN NOT NULL 
+); 
+
 
 CREATE TABLE survivor (
   survivor_id SERIAL PRIMARY KEY,
@@ -20,7 +27,7 @@ CREATE TABLE survivor (
   addressState CHAR(2) NOT NULL, 
   photoLink VARCHAR(255), 
   wheelChair BOOLEAN DEFAULT false, 
-  oxygenTank BOOLEAN DEFAULT false
+  oxygen BOOLEAN DEFAULT false
 ); 
 
 DROP TABLE IF EXISTS vehicle; 
@@ -35,7 +42,6 @@ CREATE TABLE vehicle (
   van BOOLEAN DEFAULT NULL 
 ); 
 
-DROP TABLE IF EXISTS driver;
 
 CREATE TABLE driver (
   driver_id SERIAL PRIMARY KEY,
@@ -51,8 +57,6 @@ CREATE TABLE driver (
   photoLink VARCHAR(255), 
   vehicleTypes INTEGER REFERENCES vehicle(vehicleID) 
 );
-
-DROP TABLE IF EXISTS appointment;
 
 CREATE TABLE appointment (
   appointment_id SERIAL PRIMARY KEY, 
@@ -72,10 +76,34 @@ CREATE TABLE appointment (
   toFromBoth VARCHAR (20) NOT NULL 
 ); 
 
+INSERT INTO driver ( 
+    firstName, lastName, email, phoneNumber, addressLineOne, addressZipCode, addressState, 
+    addressCity, photoLink) VALUES ( 
+    'Steve',  'Yang', 'steve.yang@hmail.com', 
+    '3617791010', '119 Nueces St', 
+    78701, 'TX', 'Austin', 'https://randomuser.me/api/portraits/thumb/men/65.jpg'
+);
 
--- DROP TABLE IF EXISTS healthEquipment;
+INSERT INTO driver ( 
+    firstName, lastName, email, phoneNumber, addressLineOne, addressZipCode, addressState, 
+    addressCity, photoLink) VALUES ( 
+    'Crew',  'Spence', 'css@hotmail.url', 
+    '1234561234', '119 Nueces St', 
+    78701, 'TX', 'Austin', 'https://randomuser.me/api/portraits/thumb/men/68.jpg'
+);
 
--- CREATE TABLE healthEquipment (
---   equip_id SERIAL PRIMARY KEY, 
-  -- wheelChair BOOLEAN DEFAULT false, 
-  -- oxygenTank BOOLEAN DEFAULT false
+INSERT INTO survivor ( 
+    firstName, lastName, email, phoneNumber, addressLineOne, addressZipCode, addressState, 
+    addressCity, photoLink, wheelChair, oxygen) VALUES ( 
+    'Brent',  'Rusnell', 'brssssss@neopets.url', 
+    '1236541234', '119 Nueces St', 
+    78701, 'TX', 'Austin', 'https://randomuser.me/api/portraits/thumb/men/2.jpg', 'TRUE', 'FALSE'
+);
+
+INSERT INTO survivor ( 
+    firstName, lastName, email, phoneNumber, addressLineOne, addressZipCode, addressState, 
+    addressCity, photoLink, wheelChair, oxygen) VALUES ( 
+    'Kent',  'Rusnell', 'krssssss@neopets.url', 
+    '1236541234', '119 Nueces St', 
+    78701, 'TX', 'Austin', 'https://randomuser.me/api/portraits/thumb/men/3.jpg', 'TRUE', 'FALSE'
+);
