@@ -131,6 +131,17 @@ const getDriver = (driverId, cb) => {
   })
 } 
 
+const getLoginId = (type, email, cb) => {
+  client.query(`SELECT ${type}_id FROM ${type} where email = '${email}'`, 
+  (err, id) => {
+    if (err) {
+      cb(err, null);
+    } else {
+      cb(null, id);
+    }
+  });
+}
+
 const updateDriver = (driverId, driverProfile, cb) => { 
   client.query(`UPDATE driver SET ( 
     firstName,  lastName, email, phoneNumber, addressLineOne, addressLineTwo, addressZipCode, addressState, 
@@ -239,4 +250,4 @@ const deleteSurvivor = (survivorId, cb) => {
 module.exports = { addAppointment, getAppointment, updateAppointment, 
   updateAppointmentDestinationDriver, updateAppointmentReturnDriver, 
   deleteAppointment, addDriver, getAllSurvivors, getDriver, updateDriver, deleteDriver, 
-  addSurvivor, getSurvivor, updateSurvivor, deleteSurvivor, getAppointmentBySurvivor, getAppointmentByDriver }
+  addSurvivor, getSurvivor, updateSurvivor, deleteSurvivor, getAppointmentBySurvivor, getAppointmentByDriver, getLoginId }

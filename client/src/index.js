@@ -23,7 +23,7 @@ const routing = (
             <Route path='/createapp' render={(props) => <CreateAppointment {...props}/>}/>
             <Route path='/login' render={(props) => <Login {...props}/>}/>
 
-            <Route path="/driver" component={DriverProfile}/>
+            <Route path="/drivers" component={DriverProfile}/>
             <Route path="/appointments" component={AppointmentNavigation}/>
             <Route path='/signup' component={Signup} />
         </div>

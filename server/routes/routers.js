@@ -1,12 +1,14 @@
 const drivers = require('./drivers');
 const appointments = require('./appointments');
 const survivors = require('./survivors');
+const login = require('./login');
 
 
 module.exports = {
     drivers,
     appointments,
-    survivors
+    survivors,
+    login
 }
 
 

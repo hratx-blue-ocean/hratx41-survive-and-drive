@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Form, Row, Col, Button, Modal, } from 'react-bootstrap';
 import UnloggedHeader from './UnloggedHeader.js';
 import axios from 'axios';
+import { Link, Redirect } from 'react-router-dom';
 
 export default class Login extends Component {
     constructor(props) {
@@ -11,28 +12,36 @@ export default class Login extends Component {
             email: '',
             password: '',
             type: 'survivor',
-            currentUser: ''
+            currentUser: '',
+            loggedIn: false
         }
 
         this.handleClick = this.handleClick.bind(this);
         this.componentDidUpdate = this.componentDidUpdate.bind(this);
+        this.handleChange = this.handleChange.bind(this);
     }
 
-    componentDidUpdate() {
-        const lowercase = this.state.type.toLowerCase();
-        <Link to={{pathname: `/${lowercase}`, state: {id: this.state.id, type: this.state.type}}}></Link>
+    componentDidUpdate(prevProps, prevState) {
+
+        if(prevState.currentUser !== this.state.currentUser){
+            const lowercase = this.state.type.toLowerCase();
+            
+        }
     }
 
     handleClick() {
         const lowercase = this.state.type.toLowerCase();
-        axios.get(`/api/users/${lowercase}s`, {email: this.state.email})
+        console.log({email: this.state.email})
+        axios.get(`/api/login/${lowercase}/${this.state.email}`)
         .then((response) => {
+            console.log(response);
             this.setState({
                 // sending a request to get the id of either a survivor or a driver to currentUser
-                currentUser: response.data.row[0][`${this.state.type}_id`]
+                currentUser: response.data[`${this.state.type}_id`],
+                loggedIn: true
             });
         })
-        this.componentDidUpdate();
+        .catch(console.log)
     }
 
 
@@ -47,6 +56,15 @@ export default class Login extends Component {
     render() {
         return (
             <>
+            {/* {{pathname: `/${lowercase}`, state: {id: this.state.currentUser, type: this.state.type}}} */}
+            {this.state.loggedIn && 
+            <Redirect to={{ 
+                pathname: `${this.state.type.toLowerCase()}s`,
+                state: {
+                    currentUser: this.state.currentUser, 
+                    type: this.state.type
+                }
+            }}/>}
             <UnloggedHeader />
             <Modal.Dialog>
                 <Modal.Header><b>Login</b></Modal.Header>
@@ -68,8 +86,8 @@ export default class Login extends Component {
                         <Form.Group>
                             <Form.Label>Type</Form.Label>
                                 <Form.Control className="m-1" as='select' name='type' onChange={this.handleChange}>
-                                    <option>Survivor</option>
-                                    <option>Driver</option>
+                                    <option>survivor</option>
+                                    <option>driver</option>
                                 </Form.Control>
                         </Form.Group>
                     </Form>
