@@ -26,9 +26,22 @@ CREATE TABLE survivor (
   addressCity VARCHAR(255) NOT NULL, 
   addressState CHAR(2) NOT NULL, 
   photoLink VARCHAR(255), 
-  wheelChair BOOLEAN NOT NULL,
-  oxygen BOOLEAN NOT NULL
-);
+  wheelChair BOOLEAN DEFAULT false, 
+  oxygen BOOLEAN DEFAULT false
+); 
+
+DROP TABLE IF EXISTS vehicle; 
+
+CREATE TABLE vehicle ( 
+  vehicleID SERIAL PRIMARY KEY, 
+  year INTEGER NOT NULL, 
+  make VARCHAR(12) NOT NULL, 
+  model VARCHAR(20) NOT NULL, 
+  licensePlate VARCHAR(12) NOT NULL, 
+  truck BOOLEAN DEFAULT NULL, 
+  van BOOLEAN DEFAULT NULL 
+); 
+
 
 CREATE TABLE driver (
   driver_id SERIAL PRIMARY KEY,
@@ -45,7 +58,6 @@ CREATE TABLE driver (
   vehicleTypes INTEGER REFERENCES vehicle(vehicleID) 
 );
 
-
 CREATE TABLE appointment (
   appointment_id SERIAL PRIMARY KEY, 
   destination_driver INTEGER REFERENCES driver(driver_id) DEFAULT null, 
@@ -57,12 +69,12 @@ CREATE TABLE appointment (
   addressZipCode INTEGER NOT NULL, 
   addressCity VARCHAR(255) NOT NULL, 
   addressState CHAR(2) NOT NULL, 
-  appoinmentTime VARCHAR(10) NOT NULL, 
-  pickupTime VARCHAR(10) NOT NULL,
+  appoinmentTime TIME NOT NULL, 
+  pickupTime TIME NOT NULL, 
+  endTime TIME NOT NULL, 
   date VARCHAR(12) NOT NULL, 
   toFromBoth VARCHAR (20) NOT NULL 
 ); 
-
 
 INSERT INTO driver ( 
     firstName, lastName, email, phoneNumber, addressLineOne, addressZipCode, addressState, 

@@ -26,7 +26,7 @@ router.get('/:id', (req, res) => {
             res.status(401).send(err);
         } else {
             console.log(`Success! Found driver: ${req.body.driverId}.`);
-            res.status(201).send(items);
+            res.status(201).send(items.rows[0]);
         }
     });
 });

@@ -10,7 +10,8 @@ export default class DriverProfile extends Component {
         super(props);
 
         this.state = {
-            id: '2',
+            currentUser: '2',
+            id: '',
             image: 'https://i.pravatar.cc/150?img=12',
             firstName: 'Austin',
             lastName: 'Zook',
@@ -24,15 +25,23 @@ export default class DriverProfile extends Component {
     }
 
     componentDidMount() {
-        axios.get(`/api/users/drivers/${this.state.id}`)
+        const driverInfo = axios.get(`/api/users/drivers/${this.props.location.state.currentUser}`)
+        const appointmentInfo = axios.get(`/api/appointments/${this.props.location.state.currentUser}`)
+
+        Promise.all([driverInfo, appointmentInfo])
+
         .then((response) => {
-            console.log(response.data)
+            console.log(response[0])
             this.setState({
-                name: response.data.firstname + ' ' + response.data.lastname,
-                image: response.data.photolink,
+                firstName: response[0].data.firstname,
+                lastName: response[0].data.lastname,
+                image: response[0].data.photolink,
+
+                // schedule: response[1].data
             });
         })
         .catch((error) => console.log(error));
+    
     }
 
     render() {

@@ -25,6 +25,7 @@ app.use(express.static('../client/public'));
 app.use('/api/users/survivors/', routers.survivors);
 app.use('/api/users/drivers/', routers.drivers);
 app.use('/api/appointments/', routers.appointments);
+app.use('/api/login/', routers.login);
 
 
 //React routing -- Brent
@@ -38,6 +39,8 @@ app.get('/*', function(req, res) {
 
 
 
+
+app.use('api/users/drivers', routers.drivers);
 
 
 

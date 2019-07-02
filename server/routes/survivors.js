@@ -7,6 +7,7 @@ const bodyParser = require('body-parser')
 router.use(express.json()); 
 
 router.post('/', (req, res) => {
+    console.log(req.body)
     db.addSurvivor(req.body, (err, items) => {
         if(err) {
           console.log('There was an error invoking app.post to add a survivor');
@@ -34,10 +35,9 @@ router.get('/:id', (req, res) => {
 router.get('/all', (req, res) => {
     db.getAllSurvivors( (err, items) => {
         if (err) {
-            console.log(`Error finding all survivors`);
-            res.status(401).send(err);
+          console.log(`Error finding all survivors`);
+          res.status(401).send(err);
         } else {
-
             console.log(`Success! Found all survivors.`);
             res.status(201).send(items);
         }

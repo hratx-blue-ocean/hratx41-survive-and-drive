@@ -10,6 +10,7 @@ const addAppointment = (appointmentInfo, cb) => {
     appoinmentTime, pickupTime, date, toFromBoth) VALUES (${appointmentInfo.survivor_id}, '${appointmentInfo.locationName}', '${appointmentInfo.addressLineOne}', '${appointmentInfo.addressLineTwo}', ${appointmentInfo.addressZipCode}, '${appointmentInfo.addressCity}', '${appointmentInfo.addressState}', '${appointmentInfo.appoinmentTime}', '${appointmentInfo.pickupTime}', '${appointmentInfo.date}', '${appointmentInfo.toFromBoth}')`, 
       (err, res) => {
       if(err) {
+        console.log('here is your error: ', err);
         cb(err, null);
       } else {
         cb(null, res);
@@ -28,8 +29,41 @@ const getAppointmentBySurvivor = (survivorId, cb) => {
   })
 } 
 
+const getAppointmentByDriver = ()=> {
+  client.query(`SELECT * FROM appointment WHERE destination_driver || return_driver = ${driverId}`, 
+  (err, appointmentInfo) => {
+    if(err) {
+        cb(err, null);
+    } else {
+        cb(null, appointmentInfo);
+    }
+  })
+} 
+
 const getAppointment = (appointmentId, cb) => {
   client.query(`SELECT * FROM appointment WHERE appointment_id = ${appointmentId}`, 
+  (err, appointmentInfo) => {
+    if(err) {
+        cb(err, null);
+    } else {
+        cb(null, appointmentInfo);
+    }
+  })
+}
+
+const getAppointmentBySurvivor = (survivorId, cb) => {
+  client.query(`SELECT * FROM appointment WHERE survivor_id = ${survivorId}`, 
+  (err, appointmentInfo) => {
+    if(err) {
+        cb(err, null);
+    } else {
+        cb(null, appointmentInfo);
+    }
+  })
+}
+
+const getAppointmentByDriver = ()=> {
+  client.query(`SELECT * FROM appointment WHERE destination_driver || return_driver = ${driverId}`, 
   (err, appointmentInfo) => {
     if(err) {
         cb(err, null);
@@ -120,6 +154,17 @@ const getDriver = (driverId, cb) => {
   })
 } 
 
+const getLoginId = (type, email, cb) => {
+  client.query(`SELECT ${type}_id FROM ${type} where email = '${email}'`, 
+  (err, id) => {
+    if (err) {
+      cb(err, null);
+    } else {
+      cb(null, id);
+    }
+  });
+}
+
 const updateDriver = (driverId, driverProfile, cb) => { 
   client.query(`UPDATE driver SET ( 
     firstName,  lastName, email, phoneNumber, addressLineOne, addressLineTwo, addressZipCode, addressState, 
@@ -154,10 +199,11 @@ const deleteDriver = (driverId, cb) => {
 const addSurvivor = (survivorProfile, cb) => { 
   let query = `INSERT INTO survivor ( 
     firstName, lastName, email, phoneNumber, addressLineOne, addressLineTwo, addressZipCode, addressState, 
-    addressCity, photoLink) VALUES ( 
+    addressCity, photoLink, wheelChair, oxygen) VALUES ( 
     '${survivorProfile.firstName}',  '${survivorProfile.lastName}', '${survivorProfile.email}', 
     '${survivorProfile.phoneNumber}', '${survivorProfile.addressLineOne}', '${survivorProfile.addressLineTwo}', 
-    ${survivorProfile.addressZipCode}, '${survivorProfile.addressState}', '${survivorProfile.addressCity}', '${survivorProfile.photoLink}' )`;
+    ${survivorProfile.addressZipCode}, '${survivorProfile.addressState}', '${survivorProfile.addressCity}', '${survivorProfile.photoLink}',
+    '${survivorProfile.wheelChair}', '${survivorProfile.oxygen}' )`;
 
   client.query(query, (err, results) => { 
         if (err) { 
@@ -227,4 +273,5 @@ const deleteSurvivor = (survivorId, cb) => {
 module.exports = { addAppointment, getAppointment, updateAppointment, 
   updateAppointmentDestinationDriver, updateAppointmentReturnDriver, 
   deleteAppointment, addDriver, getAllSurvivors, getDriver, updateDriver, deleteDriver, 
-  addSurvivor, getSurvivor, updateSurvivor, deleteSurvivor, getAppointmentBySurvivor }
+  addSurvivor, getSurvivor, updateSurvivor, deleteSurvivor, getAppointmentBySurvivor, getAppointmentByDriver, getLoginId }
+
