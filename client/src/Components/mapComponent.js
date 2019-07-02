@@ -22,7 +22,7 @@ class MapComp extends Component {
   }
 
   renderMap = () => { 
-    scriptLoader("https://maps.googleapis.com/maps/api/js?key=AIzaSyDj4FMBTLlVLzPDANxyAv7n9jTTc58vqNk&callback=initMap")
+    scriptLoader(`https://maps.googleapis.com/maps/api/js?key=${G_API}&callback=initMap`)
     window.initMap = this.initMap
   }
 
