@@ -1,14 +1,12 @@
 import React, { Component } from 'react';
-import { Button, Jumbotron, Modal } from 'react-bootstrap';
+import { Button, Jumbotron, Modal, Container } from 'react-bootstrap';
 import Signup from './Signup.js';
 import Login from './Login.js';
 import UnloggedHeader from './UnloggedHeader.js';
-import PatientProfile from './PatientProfile.js';
-import DriverProfile from './DriverProfile.js'
-import CreateAppointment from './CreateAppointment.js';
-import Appointments from './Appointments.js';
-import AppointmentNavigation from './AppointmentNavigation.js';
-import Axios from 'axios';
+
+
+
+import '../Styles/MainPage.scss';
 
 
 
@@ -43,8 +41,6 @@ export default class MainPage extends Component {
     render() {
         return (
             <>
-
-
             <UnloggedHeader signup={this.handleSignUp} login={this.handleLogin}/>
 
             {this.state.isLogin &&  <Login signup={this.handleSignUp}/>}

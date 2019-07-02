@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Nav, NavDropdown, Button, ButtonToolbar, Col, Navbar, Image, NavItem } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import '../Styles/Header.scss';
 
 
 export default class NavigationBar extends Component {
@@ -15,7 +16,7 @@ export default class NavigationBar extends Component {
 
     render(){
         return(<>
-        <Navbar  className="m-2 p-1" sticky="top" bg="light" variant="light">
+        <Navbar  className="px-5 header" sticky="top">
             <Navbar.Brand href="/"><Image src="./logo.png" width="150px"></Image></Navbar.Brand>
             <Nav variant="dark" fixed="top" className="ml-auto pr-md" activeKey="1">
                 <Nav.Item >

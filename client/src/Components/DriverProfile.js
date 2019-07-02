@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Image, Container, Row, Col, ListGroup, Nav, Navbar, ListGroupItem } from 'react-bootstrap';
 import DriverSchedule from './DriverSchedule.js';
 import NavigationBar from './NavigationBar.js';
+import axios from 'axios';
 
 
 export default class DriverProfile extends Component {
@@ -39,7 +40,7 @@ export default class DriverProfile extends Component {
             <>
             <NavigationBar />
             <Navbar className="mx-5 mt-5 mb-2 pt-5 px-2 pb-1" bg="light">
-                <Nav.Item className="ml-5 p-2" xs={6}>
+                <Nav.Item className="ml-5 pl-5 pb-2" xs={6}>
                     <Image src={this.state.image} roundedCircle ></Image>
                 </Nav.Item>
                 <Nav.Item className="mx-3 mt-5 mb-2">

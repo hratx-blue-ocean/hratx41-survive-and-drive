@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { Nav, Button, ButtonToolbar, Navbar } from 'react-bootstrap';
+import { Nav, Button, ButtonToolbar, Navbar, Image } from 'react-bootstrap';
+import '../Styles/Header.scss';
 
 
 export default class UnloggedHeader extends Component {
@@ -13,11 +14,9 @@ export default class UnloggedHeader extends Component {
 
     render(){
         return(<>
-        <Navbar  className="m-2 p-1">
+        <Navbar  className="px-5 header" sticky="top">
             <Nav>
-                <Nav.Item className="pl-md">
-                    <h3>Fighter Flight</h3>
-                </Nav.Item>
+            <Navbar.Brand href="/"><Image src="./logo.png" width="150px"></Image></Navbar.Brand>
             </Nav>
             <Nav variant="dark" fixed="top" className="ml-auto pr-md" activeKey="1">
                 <Nav.Item >

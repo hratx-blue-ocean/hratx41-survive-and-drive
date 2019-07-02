@@ -36,10 +36,9 @@ export default class Signup extends Component {
     handleSubmit(e) {
         // e.preventDefault();
         const lowercase = this.state.type.toLowerCase();
-        console.log(lowercase)
         axios.post(`/api/users/${lowercase}s`, this.state)
-        .then(response => console.log(response))
-        .catch(error => console.log(error))
+        .then(console.log)
+        .catch(console.log)
     }
 
 

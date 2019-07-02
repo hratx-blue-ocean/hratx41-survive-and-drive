@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import MainPage from './MainPage.js';
 
+import '../Styles/MainPage.scss';
 
-// import './App.css';
 
 export default class App extends Component {
   constructor(props) {
