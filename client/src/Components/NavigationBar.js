@@ -8,8 +8,16 @@ export default class NavigationBar extends Component {
         super(props);
         this.state = {
             //need to pass id down to state   ex. isDriver: true, isPatient: false???  
-            id: 2, 
+            currentUser: 2,
+            type: 'survivor' 
         }
+    }
+
+    componentDidMount() {
+        this.setState({
+            currentUser: this.props.currentUser,
+            type: this.props.type
+        });
     }
 
 
@@ -21,13 +29,13 @@ export default class NavigationBar extends Component {
                 <Nav.Item >
                     <ButtonToolbar>
                         
-                        <Link to={{pathname: "/appointments", state: {id: this.state.id}}}><Button variant="outline-dark" className="m-2">Appointment List</Button></Link>
+                        <Link to={{pathname: "/appointments", state: {currentUser: this.state.currentUser}}}><Button variant="outline-dark" className="m-2">Appointment List</Button></Link>
                         
-                        <Link to={{pathname: "/patient", state: {id: this.state.id}}}><Button variant="outline-dark" className="m-2">My Profile</Button></Link>
+                        <Link to={{pathname: `${this.state.type}s`, state: {currentUser: this.state.currentUser}}}><Button variant="outline-dark" className="m-2">My Profile</Button></Link>
                         
                         
+                        <Link to={{pathname: "/", state: {currentUser: null}}}><Button variant="outline-dark" className="m-2">Logout</Button></Link>
                         
-                        <Link to={{pathname: "/", state: {id: null}}}><Button variant="outline-dark" className="m-2">Logout</Button></Link>
                     </ButtonToolbar>
                 </Nav.Item>
             </Nav>

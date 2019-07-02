@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Button, Form , Row, Col, Modal } from 'react-bootstrap';
+import UnloggedHeader from './UnloggedHeader.js';
 import axios from 'axios';
 
 export default class Signup extends Component {
@@ -9,6 +10,8 @@ export default class Signup extends Component {
         this.state = {
             firstName: '',
             lastName: '',
+            wheelChair: true,
+            oxygen: true,
             addressLineOne: '',
             addressLineTwo: '',
             addressCity: '',
@@ -47,6 +50,7 @@ export default class Signup extends Component {
     render() {
         return (
             <>
+            <UnloggedHeader />
             <Modal.Dialog>
                 <Modal.Header><b>Sign Up</b></Modal.Header>
                 <Modal.Body>

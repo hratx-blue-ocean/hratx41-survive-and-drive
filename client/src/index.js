@@ -10,6 +10,7 @@ import DriverProfile from './Components/DriverProfile.js';
 import AppointmentNavigation from './Components/AppointmentNavigation.js';
 import Signup from './Components/Signup.js';
 import CreateAppointment from './Components/CreateAppointment.js';
+import Login from './Components/Login';
 // import './index.css';
 
 
@@ -17,12 +18,13 @@ import CreateAppointment from './Components/CreateAppointment.js';
 const routing = (
     <Router >
         <div>
-            <Route exact path='/' component={MainPage} />
-            <Route path='/patient' render={(props) => <PatientProfile {...props} />}/>
+            <Route exact path='/' component={Signup} />
+            <Route path='/survivors' render={(props) => <PatientProfile {...props} />}/>
             <Route path='/createapp' render={(props) => <CreateAppointment {...props}/>}/>
+            <Route path='/login' render={(props) => <Login {...props}/>}/>
+            <Route path='/appointments' render={(props) => <AppointmentNavigation {...props}/>}/>
 
-            <Route path="/driver" component={DriverProfile}/>
-            <Route path="/appointments" component={AppointmentNavigation}/>
+            <Route path="/drivers" component={DriverProfile}/>
             <Route path='/signup' component={Signup} />
         </div>
     </Router>
