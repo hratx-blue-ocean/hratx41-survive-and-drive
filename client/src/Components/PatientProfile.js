@@ -27,9 +27,6 @@ export default class PatientProfile extends Component {
     }
 
     componentDidMount() {
-        // //axios request to get user information
-        // const id = this.props.location.state
-        // // console.log(id)
         const profileInfo = axios.get(`/api/users/survivors/${this.state.id}`);
         const appointmentInfo = axios.get(`/api/appointments/${this.state.id}`);
         

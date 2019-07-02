@@ -17,17 +17,10 @@ export default class Login extends Component {
         }
 
         this.handleClick = this.handleClick.bind(this);
-        this.componentDidUpdate = this.componentDidUpdate.bind(this);
         this.handleChange = this.handleChange.bind(this);
     }
 
-    componentDidUpdate(prevProps, prevState) {
 
-        if(prevState.currentUser !== this.state.currentUser){
-            const lowercase = this.state.type.toLowerCase();
-            
-        }
-    }
 
     handleClick() {
         const lowercase = this.state.type.toLowerCase();

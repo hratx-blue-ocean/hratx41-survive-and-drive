@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Nav, Button, ButtonToolbar, Navbar } from 'react-bootstrap';
+import { Nav, Button, ButtonToolbar, Navbar, Image } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
 
@@ -14,11 +14,9 @@ export default class UnloggedHeader extends Component {
 
     render(){
         return(<>
-        <Navbar  className="m-2 p-1">
-            <Nav>
-                <Nav.Item className="pl-md">
-                    <h3>Fighter Flight</h3>
-                </Nav.Item>
+        <Navbar  className="m-2 p-1" sticky="top" bg="light" variant="light">
+            <Navbar.Brand href="/"><Image src="./logo.png" width="150px"></Image></Navbar.Brand>
+            <Nav variant="dark" fixed="top" className="ml-auto pr-md" activeKey="1">
             </Nav>
             <Nav variant="dark" fixed="top" className="ml-auto pr-md" activeKey="1">
                 <Nav.Item >

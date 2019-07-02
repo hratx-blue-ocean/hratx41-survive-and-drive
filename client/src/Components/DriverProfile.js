@@ -24,9 +24,6 @@ export default class DriverProfile extends Component {
     }
 
     componentDidMount() {
-        // if (prevProps !== this.props) {
-        console.log('id', this.props.location.state)
-        // console.log('Fetching information for ', this.props)
         const driverInfo = axios.get(`/api/users/drivers/${this.props.location.state.currentUser}`)
         const appointmentInfo = axios.get(`/api/appointments/${this.props.location.state.currentUser}`)
 
