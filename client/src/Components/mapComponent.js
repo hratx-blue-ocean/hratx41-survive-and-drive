@@ -6,7 +6,7 @@ const mapStyle = {
 }
 
 /* 
-https://maps.googleapis.com/maps/api/geocode/json?address=316+Housefinch+Lp,+Leander,+TX&key=AIzaSyDj4FMBTLlVLzPDANxyAv7n9jTTc58vqNk
+https://maps.googleapis.com/maps/api/geocode/json?address=119+Nueces+St,+Austin,+TX&key=API_KEY
 119 Nueces St, Austin, TX, 78701
 */
 
