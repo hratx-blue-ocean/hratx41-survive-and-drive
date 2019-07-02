@@ -4,8 +4,6 @@ const survivors = require('./survivors');
 const login = require('./login');
 
 
-const drivers = require('./drivers');
-
 
 module.exports = {
     drivers,
