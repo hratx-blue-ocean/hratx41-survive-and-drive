@@ -40,16 +40,16 @@ const getAppointment = (appointmentId, cb) => {
   })
 }
 
-const getAppointmentBySurvivor = (survivorId, cb) => {
-  client.query(`SELECT * FROM appointment WHERE survivor_id = ${survivorId}`, 
-  (err, appointmentInfo) => {
-    if(err) {
-        cb(err, null);
-    } else {
-        cb(null, appointmentInfo);
-    }
-  })
-}
+// const getAppointmentBySurvivor = (survivorId, cb) => {
+//   client.query(`SELECT * FROM appointment WHERE survivor_id = ${survivorId}`, 
+//   (err, appointmentInfo) => {
+//     if(err) {
+//         cb(err, null);
+//     } else {
+//         cb(null, appointmentInfo);
+//     }
+//   })
+// }
 
 const getAppointmentByDriver = ()=> {
   client.query(`SELECT * FROM appointment WHERE destination_driver || return_driver = ${driverId}`, 

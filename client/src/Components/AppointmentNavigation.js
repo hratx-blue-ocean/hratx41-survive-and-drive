@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { Row, Col, FormControl, Button, Modal, InputGroup, Container, Image } from 'react-bootstrap';
 import Appointments from './Appointments.js';
-import NavigationBar from './NavigationBar.js';
+import NavigationBar from './NavigationBar.js'; 
+import MapComp from './mapComponent'
 
 
 export default class AppointmentNavigation extends Component {
@@ -55,7 +56,7 @@ export default class AppointmentNavigation extends Component {
                             </InputGroup>
                         </Row>
                         <Row>
-                            <Image src={this.state.map} className="img-thumbnail" style={{
+                            <MapComp className="map" style={{
                                 marginTop: 20
                             }}/>
                         </Row>
