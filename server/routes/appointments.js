@@ -6,8 +6,6 @@ const bodyParser = require('body-parser')
 
 router.use(express.json()); 
 
-router.use(express.json()); 
-
 //add appointment
 router.post('/', (req, res) => {
     db.addAppointment(req.body, (err, items) => {
@@ -43,22 +41,21 @@ router.get('/:id', (req, res) => {
       console.log(`Success! Found appointments for driver:  ${req.body.driver_id}.`);
       res.status(201).send(items);
     }
+  })
+});
 
-
-  //get appointment by survivor id
-  router.get('/:id', (req, res) => {
-    const id = req.params.id
-    db.getAppointmentBySurvivor(id, (err, items) => {
-      if (err) {
-        console.log(`Error finding appointments for survivor: ${id}:`);
-        res.status(401).send(err);
-      } else {
-        console.log(`Success! Found appointments for survivor: ${id}.`);
-        res.status(201).send(items.rows);
-      }
-    });
-
+router.get('/:id', (req, res) => {
+  const id = req.params.id
+  db.getAppointmentBySurvivor(id, (err, items) => {
+    if (err) {
+      console.log(`Error finding appointments for survivor: ${id}:`);
+      res.status(401).send(err);
+    } else {
+      console.log(`Success! Found appointments for survivor: ${id}.`);
+      res.status(201).send(items.rows);
+    }
   });
+
 });
   
   //get appointment by appointment id
