@@ -1,0 +1,19 @@
+$color1: #86a4ca;
+$color2: #5dddd0;
+$color3: #874a97;
+$color4: #e6f0fc;
+$color5: #424564;
+
+$background-color: $color4;
+$header-color: $color1;
+$border: 1px solid grey;
+
+#root{
+    background-color: $background-color;
+
+    .btn {
+        background: $header-color;
+        color: black;
+    }
+    
+}

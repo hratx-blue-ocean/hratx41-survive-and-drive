@@ -1,0 +1,16 @@
+@import './Index.scss';
+
+
+.navbar {
+    background-color: $header-color;
+    border-bottom: $border;
+
+    img {
+        border: $border;
+    };
+
+    .btn {
+        background: $background-color;
+    }
+}
+
