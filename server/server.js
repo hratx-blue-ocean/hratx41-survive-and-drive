@@ -1,14 +1,12 @@
-<<<<<<< HEAD
 const createError = require('http-errors');
-const logger = require('morgan');
-=======
 // const logger = require('morgan');
-const createError = require('http-errors');
->>>>>>> 109f75e017df1dfb3bf5f38e95b2e416dd469e48
 const express = require('express');
 const app = express();
+
+const path = require('path');
 const port = process.env.PORT || 8000;
 
+const routers = require('./routes/routers');
 
 
 // open up CORS 
@@ -23,7 +21,28 @@ app.use((_, res, next) => {
 app.use(express.static('./client/public'));
 
 
-// app.get('/', (req, res) => res.send('Hello World!'));
+//Express routes using routers -- Crew / Will
+app.use('/api/users/survivors/', routers.survivors);
+app.use('/api/users/drivers/', routers.drivers);
+app.use('/api/appointments/', routers.appointments);
+app.use('/api/login/', routers.login);
+
+
+//React routing -- Brent
+app.get('/*', function(req, res) {
+    res.sendFile(path.join(__dirname, '../client/public/index.html'), function(err) {
+      if (err) {
+        res.status(500).send(err)
+      }
+    })
+  })
+
+
+
+
+app.use('api/users/drivers', routers.drivers);
+
+
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
 
